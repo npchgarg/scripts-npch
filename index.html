@@ -1,38 +1,28 @@
-<!-- NPCH ISOLATED STICKY MENU -->
+<!-- NPCH STICKY MENU – FINAL STABLE -->
 <style>
-/* ROOT SCOPE — NOTHING LEAKS */
-#npch-sticky-root{
-  all: initial;
-}
-
-/* VARIABLES */
-#npch-sticky-root{
+#npch-root{
   --bg: rgba(10,14,30,.92);
   --border: rgba(255,255,255,.08);
-  --neon: #00f6ff;
-  position: relative;
-  z-index: 99999;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto;
+  --neon:#00f6ff;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
 }
 
-/* SPACE RESERVER */
-#npch-header-gap{
-  height:72px;
-}
+/* SPACE HOLDER */
+#npch-gap{height:72px}
 
 /* HEADER */
 #npch-header{
-  position: fixed;
+  position:fixed;
   top:0; left:0;
   width:100%;
   height:72px;
-  background: var(--bg);
-  backdrop-filter: blur(14px);
+  background:var(--bg);
+  backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
+  z-index:100000;
 }
 
-/* INNER */
-#npch-header .npch-inner{
+#npch-header .inner{
   max-width:1280px;
   height:100%;
   margin:auto;
@@ -42,76 +32,57 @@
   justify-content:space-between;
 }
 
-/* LOGO (LEFT, ISOLATED) */
-#npch-header .npch-logo img{
+/* LOGO */
+#npch-header .logo img{
   height:44px;
-  width:auto;
   display:block;
   filter:
     drop-shadow(0 0 6px var(--neon))
     drop-shadow(0 0 14px rgba(0,246,255,.6));
 }
 
-/* DESKTOP LINKS */
-#npch-header .npch-links{
-  display:flex;
-  gap:22px;
-}
-#npch-header .npch-links a{
-  color:#fff;
-  text-decoration:none;
-  font-size:15px;
-  opacity:.85;
-}
-#npch-header .npch-links a:hover{opacity:1}
-
-/* SEARCH */
-#npch-header .npch-search input{
-  width:170px;
-  padding:8px 14px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  outline:none;
-}
-
-/* HAMBURGER (RIGHT) */
-#npch-header .npch-ham{
-  display:none;
+/* MENU ICON */
+#npch-header .ham{
   font-size:26px;
-  color:#fff;
   background:none;
   border:none;
+  color:#fff;
   cursor:pointer;
 }
 
-/* MOBILE OVERLAY */
+/* OVERLAY (REMOVED COMPLETELY WHEN CLOSED) */
 #npch-overlay{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.6);
-  display:none;
   z-index:99998;
+  display:none;
 }
 
-/* DRAWER */
+/* DRAWER (DISPLAY NONE WHEN CLOSED) */
 #npch-drawer{
   position:fixed;
   top:0;
-  right:-320px;
+  right:0;
   width:300px;
   height:100%;
   background:#0b1022;
   padding:20px;
-  transition:.35s ease;
   z-index:99999;
+  transform:translateX(100%);
+  transition:transform .35s ease;
+  display:none;
 }
-#npch-drawer.active{right:0}
-#npch-overlay.active{display:block}
 
-/* MOBILE CONTENT */
-#npch-drawer .npch-close{
+/* ACTIVE STATES */
+#npch-overlay.active{display:block}
+#npch-drawer.active{
+  display:block;
+  transform:translateX(0);
+}
+
+/* CLOSE */
+#npch-drawer .close{
   font-size:24px;
   background:none;
   border:none;
@@ -120,6 +91,7 @@
   cursor:pointer;
 }
 
+/* INPUT */
 #npch-drawer input{
   width:100%;
   margin:20px 0;
@@ -129,71 +101,45 @@
   border:1px solid rgba(255,255,255,.2);
   color:#fff;
 }
-
-#npch-drawer a{
-  display:block;
-  padding:12px 0;
-  color:#fff;
-  text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  #npch-header .npch-links,
-  #npch-header .npch-search{display:none}
-  #npch-header .npch-ham{display:block}
-}
 </style>
 
-<div id="npch-sticky-root">
-  <div id="npch-header-gap"></div>
+<div id="npch-root">
+  <div id="npch-gap"></div>
 
   <header id="npch-header">
-    <div class="npch-inner">
-
-      <!-- LOGO LEFT -->
-      <div class="npch-logo">
+    <div class="inner">
+      <div class="logo">
         <img src="https://npch.publit.io/file/file-0000000089bc71faaead90a6786424b1-1024x683.png" alt="NPCH">
       </div>
-
-      <!-- DESKTOP MENU (ADD LATER) -->
-      <nav class="npch-links"></nav>
-
-      <!-- SEARCH -->
-      <div class="npch-search">
-        <input type="search" placeholder="Search…">
-      </div>
-
-      <!-- HAMBURGER RIGHT -->
-      <button class="npch-ham" onclick="npchOpen()">☰</button>
-
+      <button class="ham" onclick="npchOpen()">☰</button>
     </div>
   </header>
 
-  <!-- MOBILE MENU -->
   <div id="npch-overlay" onclick="npchClose()"></div>
 
-  <div id="npch-drawer">
-    <button class="npch-close" onclick="npchClose()">✕</button>
+  <aside id="npch-drawer">
+    <button class="close" onclick="npchClose()">✕</button>
     <input type="search" placeholder="Search…">
-    <nav>
-      <!-- MOBILE MENU ITEMS -->
-    </nav>
-  </div>
+    <!-- MENU ITEMS HERE -->
+  </aside>
 </div>
 
 <script>
+const drawer = document.getElementById('npch-drawer');
+const overlay = document.getElementById('npch-overlay');
+
 function npchOpen(){
-  document.getElementById('npch-drawer').classList.add('active');
-  document.getElementById('npch-overlay').classList.add('active');
+  overlay.classList.add('active');
+  drawer.classList.add('active');
+  document.body.style.overflow='hidden';
 }
+
 function npchClose(){
-  document.getElementById('npch-drawer').classList.remove('active');
-  document.getElementById('npch-overlay').classList.remove('active');
+  drawer.classList.remove('active');
+  overlay.classList.remove('active');
+  document.body.style.overflow='';
 }
 </script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="theme-color" content="#0b0b0b">
 <meta name="apple-mobile-web-app-capable" content="yes">
