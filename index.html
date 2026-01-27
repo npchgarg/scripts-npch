@@ -1,56 +1,64 @@
-<!-- NPCH Sticky SaaS Menu -->
+<!-- NPCH Sticky Header (Isolated & Fixed) -->
 <style>
 :root{
-  --npch-blue:#0ff;
-  --npch-dark:#0b0f1a;
-  --npch-glass:rgba(10,15,30,.85);
+  --npch-bg: rgba(10,14,30,.9);
+  --npch-border: rgba(255,255,255,.08);
+  --npch-text:#fff;
 }
 
-/* RESET SAFE */
-#npch-menu *,#npch-menu *::before,#npch-menu *::after{
+/* SAFE RESET */
+#npch-header, #npch-header *{
   box-sizing:border-box;
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
 }
 
-/* STICKY HEADER */
-#npch-menu{
+/* HEADER WRAPPER (RESERVES SPACE) */
+#npch-header-space{
+  height:72px;
+}
+
+/* HEADER */
+#npch-header{
   position:fixed;
   top:0;
   left:0;
   width:100%;
-  z-index:99999;
-  background:var(--npch-glass);
+  height:72px;
+  z-index:100000;
+  background:var(--npch-bg);
   backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid var(--npch-border);
 }
 
-.npch-bar{
-  max-width:1200px;
+/* INNER BAR */
+.npch-inner{
+  max-width:1280px;
+  height:100%;
   margin:auto;
-  padding:12px 18px;
-  display:flex;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
   align-items:center;
-  justify-content:space-between;
 }
 
-/* LOGO CENTER */
+/* LOGO (ISOLATED CENTER) */
 .npch-logo{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
+  display:flex;
+  justify-content:center;
 }
 .npch-logo img{
-  height:42px;
-  object-fit:contain;
+  height:44px;
+  width:auto;
+  display:block;
 }
 
-/* DESKTOP MENU */
+/* DESKTOP LINKS */
 .npch-links{
   display:flex;
   gap:22px;
 }
 .npch-links a{
-  color:#fff;
+  color:var(--npch-text);
   text-decoration:none;
   font-size:15px;
   opacity:.85;
@@ -58,14 +66,18 @@
 .npch-links a:hover{opacity:1}
 
 /* SEARCH */
+.npch-search{
+  display:flex;
+  justify-content:flex-end;
+}
 .npch-search input{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
-  color:#fff;
-  padding:7px 12px;
+  width:170px;
+  padding:8px 14px;
   border-radius:20px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.08);
+  color:#fff;
   outline:none;
-  width:160px;
 }
 
 /* HAMBURGER */
@@ -82,31 +94,29 @@
 #npch-overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.55);
+  background:rgba(0,0,0,.6);
   display:none;
+  z-index:99998;
 }
 #npch-drawer{
   position:fixed;
   top:0;
-  right:-100%;
-  width:280px;
+  right:-320px;
+  width:300px;
   height:100%;
   background:#0b1022;
+  z-index:99999;
   padding:20px;
   transition:.35s ease;
 }
-#npch-drawer.active{
-  right:0;
-}
-#npch-overlay.active{
-  display:block;
-}
+#npch-drawer.active{right:0}
+#npch-overlay.active{display:block}
 
 .npch-close{
   font-size:24px;
-  color:#fff;
   background:none;
   border:none;
+  color:#fff;
   float:right;
   cursor:pointer;
 }
@@ -116,8 +126,8 @@
   margin:20px 0;
   padding:10px;
   border-radius:10px;
-  border:1px solid rgba(255,255,255,.2);
   background:#111;
+  border:1px solid rgba(255,255,255,.2);
   color:#fff;
 }
 
@@ -136,14 +146,16 @@
 }
 </style>
 
-<header id="npch-menu">
-  <div class="npch-bar">
+<!-- SPACE RESERVER -->
+<div id="npch-header-space"></div>
 
-    <!-- LEFT (Desktop Menu Placeholder) -->
+<!-- HEADER -->
+<header id="npch-header">
+  <div class="npch-inner">
+
+    <!-- LEFT -->
     <nav class="npch-links">
-      <!-- ADD MENU ITEMS HERE -->
-      <!-- <a href="#">Home</a> -->
-      <!-- <a href="#">Services</a> -->
+      <!-- ADD DESKTOP MENU ITEMS HERE -->
     </nav>
 
     <!-- CENTER LOGO -->
@@ -172,8 +184,6 @@
 
   <nav class="npch-mobile-links">
     <!-- ADD MOBILE MENU ITEMS HERE -->
-    <!-- <a href="#">Home</a> -->
-    <!-- <a href="#">Services</a> -->
   </nav>
 </div>
 
@@ -187,7 +197,6 @@ function npchClose(){
   document.getElementById('npch-overlay').classList.remove('active');
 }
 </script>
-
 <!-- PAGE OFFSET FIX -->
 <div style="height:70px"></div>
 
