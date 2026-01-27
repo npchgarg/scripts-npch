@@ -1,87 +1,83 @@
-<!-- NPCH Sticky Header (Isolated & Fixed) -->
+<!-- NPCH ISOLATED STICKY MENU -->
 <style>
-:root{
-  --npch-bg: rgba(10,14,30,.9);
-  --npch-border: rgba(255,255,255,.08);
-  --npch-text:#fff;
+/* ROOT SCOPE — NOTHING LEAKS */
+#npch-sticky-root{
+  all: initial;
 }
 
-/* SAFE RESET */
-#npch-header, #npch-header *{
-  box-sizing:border-box;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
+/* VARIABLES */
+#npch-sticky-root{
+  --bg: rgba(10,14,30,.92);
+  --border: rgba(255,255,255,.08);
+  --neon: #00f6ff;
+  position: relative;
+  z-index: 99999;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto;
 }
 
-/* HEADER WRAPPER (RESERVES SPACE) */
-#npch-header-space{
+/* SPACE RESERVER */
+#npch-header-gap{
   height:72px;
 }
 
 /* HEADER */
 #npch-header{
-  position:fixed;
-  top:0;
-  left:0;
+  position: fixed;
+  top:0; left:0;
   width:100%;
   height:72px;
-  z-index:100000;
-  background:var(--npch-bg);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--npch-border);
+  background: var(--bg);
+  backdrop-filter: blur(14px);
+  border-bottom:1px solid var(--border);
 }
 
-/* INNER BAR */
-.npch-inner{
+/* INNER */
+#npch-header .npch-inner{
   max-width:1280px;
   height:100%;
   margin:auto;
-  padding:0 20px;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
+  padding:0 22px;
+  display:flex;
   align-items:center;
+  justify-content:space-between;
 }
 
-/* LOGO (ISOLATED CENTER) */
-.npch-logo{
-  display:flex;
-  justify-content:center;
-}
-.npch-logo img{
+/* LOGO (LEFT, ISOLATED) */
+#npch-header .npch-logo img{
   height:44px;
   width:auto;
   display:block;
+  filter:
+    drop-shadow(0 0 6px var(--neon))
+    drop-shadow(0 0 14px rgba(0,246,255,.6));
 }
 
 /* DESKTOP LINKS */
-.npch-links{
+#npch-header .npch-links{
   display:flex;
   gap:22px;
 }
-.npch-links a{
-  color:var(--npch-text);
+#npch-header .npch-links a{
+  color:#fff;
   text-decoration:none;
   font-size:15px;
   opacity:.85;
 }
-.npch-links a:hover{opacity:1}
+#npch-header .npch-links a:hover{opacity:1}
 
 /* SEARCH */
-.npch-search{
-  display:flex;
-  justify-content:flex-end;
-}
-.npch-search input{
+#npch-header .npch-search input{
   width:170px;
   padding:8px 14px;
   border-radius:20px;
-  border:1px solid rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.18);
   background:rgba(255,255,255,.08);
   color:#fff;
   outline:none;
 }
 
-/* HAMBURGER */
-.npch-ham{
+/* HAMBURGER (RIGHT) */
+#npch-header .npch-ham{
   display:none;
   font-size:26px;
   color:#fff;
@@ -90,7 +86,7 @@
   cursor:pointer;
 }
 
-/* MOBILE DRAWER */
+/* MOBILE OVERLAY */
 #npch-overlay{
   position:fixed;
   inset:0;
@@ -98,6 +94,8 @@
   display:none;
   z-index:99998;
 }
+
+/* DRAWER */
 #npch-drawer{
   position:fixed;
   top:0;
@@ -105,14 +103,15 @@
   width:300px;
   height:100%;
   background:#0b1022;
-  z-index:99999;
   padding:20px;
   transition:.35s ease;
+  z-index:99999;
 }
 #npch-drawer.active{right:0}
 #npch-overlay.active{display:block}
 
-.npch-close{
+/* MOBILE CONTENT */
+#npch-drawer .npch-close{
   font-size:24px;
   background:none;
   border:none;
@@ -121,7 +120,7 @@
   cursor:pointer;
 }
 
-.npch-mobile-search input{
+#npch-drawer input{
   width:100%;
   margin:20px 0;
   padding:10px;
@@ -131,7 +130,7 @@
   color:#fff;
 }
 
-.npch-mobile-links a{
+#npch-drawer a{
   display:block;
   padding:12px 0;
   color:#fff;
@@ -141,50 +140,47 @@
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .npch-links,.npch-search{display:none}
-  .npch-ham{display:block}
+  #npch-header .npch-links,
+  #npch-header .npch-search{display:none}
+  #npch-header .npch-ham{display:block}
 }
 </style>
 
-<!-- SPACE RESERVER -->
-<div id="npch-header-space"></div>
+<div id="npch-sticky-root">
+  <div id="npch-header-gap"></div>
 
-<!-- HEADER -->
-<header id="npch-header">
-  <div class="npch-inner">
+  <header id="npch-header">
+    <div class="npch-inner">
 
-    <!-- LEFT -->
-    <nav class="npch-links">
-      <!-- ADD DESKTOP MENU ITEMS HERE -->
-    </nav>
+      <!-- LOGO LEFT -->
+      <div class="npch-logo">
+        <img src="https://npch.publit.io/file/file-0000000089bc71faaead90a6786424b1-1024x683.png" alt="NPCH">
+      </div>
 
-    <!-- CENTER LOGO -->
-    <div class="npch-logo">
-      <img src="https://npch.publit.io/file/file-0000000089bc71faaead90a6786424b1-1024x683.png" alt="NPCH Logo">
+      <!-- DESKTOP MENU (ADD LATER) -->
+      <nav class="npch-links"></nav>
+
+      <!-- SEARCH -->
+      <div class="npch-search">
+        <input type="search" placeholder="Search…">
+      </div>
+
+      <!-- HAMBURGER RIGHT -->
+      <button class="npch-ham" onclick="npchOpen()">☰</button>
+
     </div>
+  </header>
 
-    <!-- RIGHT -->
-    <div class="npch-search">
-      <input type="search" placeholder="Search…">
-    </div>
+  <!-- MOBILE MENU -->
+  <div id="npch-overlay" onclick="npchClose()"></div>
 
-    <button class="npch-ham" onclick="npchOpen()">☰</button>
-  </div>
-</header>
-
-<!-- MOBILE MENU -->
-<div id="npch-overlay" onclick="npchClose()"></div>
-
-<div id="npch-drawer">
-  <button class="npch-close" onclick="npchClose()">✕</button>
-
-  <div class="npch-mobile-search">
+  <div id="npch-drawer">
+    <button class="npch-close" onclick="npchClose()">✕</button>
     <input type="search" placeholder="Search…">
+    <nav>
+      <!-- MOBILE MENU ITEMS -->
+    </nav>
   </div>
-
-  <nav class="npch-mobile-links">
-    <!-- ADD MOBILE MENU ITEMS HERE -->
-  </nav>
 </div>
 
 <script>
@@ -197,9 +193,6 @@ function npchClose(){
   document.getElementById('npch-overlay').classList.remove('active');
 }
 </script>
-<!-- PAGE OFFSET FIX -->
-<div style="height:70px"></div>
-
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="theme-color" content="#0b0b0b">
