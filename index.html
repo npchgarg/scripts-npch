@@ -29,3 +29,3220 @@
 <script src="/assets/js/main.js"></script>
 </body>
 </html>
+
+<!-- wp:html -->
+<!-- ================= NPCH INDIA OFFER POPUP ================= -->
+<style>
+#npch-offer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(4px);
+  z-index:9998;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:fadeIn .4s ease;
+}
+
+#npch-offer-popup{
+  width:92%;
+  max-width:420px;
+  background:linear-gradient(135deg,#0a0f2c,#0e1a4f);
+  color:#fff;
+  border-radius:20px;
+  padding:26px 22px 24px;
+  position:relative;
+  box-shadow:
+    0 0 25px rgba(0,123,255,.45),
+    0 25px 60px rgba(0,0,0,.5);
+  animation:popupIn .55s cubic-bezier(.2,.9,.3,1);
+  overflow:hidden;
+  font-family:Segoe UI,Roboto,Arial;
+}
+
+/* Glow Border */
+#npch-offer-popup::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:20px;
+  background:linear-gradient(90deg,#00c6ff,#007bff,#00c6ff);
+  z-index:-1;
+  animation:borderRun 4s linear infinite;
+}
+
+/* Close Button */
+#npch-offer-close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  font-size:20px;
+  cursor:pointer;
+  opacity:.8;
+  transition:.2s;
+}
+#npch-offer-close:hover{opacity:1; transform:scale(1.1);}
+
+/* Logo / Brand */
+.npch-brand{
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.5px;
+  color:#66ccff;
+  margin-bottom:10px;
+}
+
+/* Heading */
+.npch-title{
+  font-size:24px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+/* Offer Text */
+.npch-text{
+  font-size:15px;
+  line-height:1.6;
+  opacity:.9;
+  margin-bottom:18px;
+}
+
+/* CTA Buttons */
+.npch-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.npch-btn{
+  flex:1;
+  min-width:140px;
+  padding:12px 14px;
+  border-radius:30px;
+  text-align:center;
+  font-weight:600;
+  text-decoration:none;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.npch-btn::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.15);
+  opacity:0;
+  transition:.25s;
+}
+
+.npch-btn:hover::after{opacity:1}
+.npch-btn:hover{transform:translateY(-2px)}
+
+.npch-email{
+  background:linear-gradient(135deg,#17ead9,#6078ea);
+}
+
+.npch-whatsapp{
+  background:linear-gradient(135deg,#25d366,#128c7e);
+}
+
+/* Footer */
+.npch-footer{
+  margin-top:14px;
+  font-size:12px;
+  opacity:.6;
+  text-align:center;
+}
+
+/* Animations */
+@keyframes popupIn{
+  from{transform:scale(.7) translateY(40px);opacity:0}
+  to{transform:scale(1) translateY(0);opacity:1}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes borderRun{
+  0%{filter:hue-rotate(0deg)}
+  100%{filter:hue-rotate(360deg)}
+}
+</style>
+
+<div id="npch-offer-overlay">
+  <div id="npch-offer-popup">
+    <div id="npch-offer-close">✕</div>
+
+    <div class="npch-brand">NPCH INDIA</div>
+
+    <div class="npch-title">🔥 Website Offer</div>
+
+    <div class="npch-text">
+      Websites starting from <b>₹499/-*</b> only.<br>
+      Offer valid for <b>limited time</b>.<br>
+      <b>Grab it now!</b>
+    </div>
+
+    <div class="npch-actions">
+      <a href="mailto:info@npch.in" class="npch-btn npch-email">
+        📧 Email Us
+      </a>
+
+      <a href="https://wa.me/918290122066?text=Hello%20NPCH%20India,%20I%20want%20a%20website%20starting%20from%20499" 
+         target="_blank"
+         class="npch-btn npch-whatsapp">
+        💬 WhatsApp
+      </a>
+    </div>
+
+    <div class="npch-footer">
+      Powered by NPCH India
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('npch-offer-close').onclick = function(){
+  document.getElementById('npch-offer-overlay').style.display='none';
+};
+</script>
+<!-- ================= END NPCH OFFER POPUP ================= -->
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- NPCH Premium 3D Preloader -->
+<style>
+#npch-preloader{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#f8fafc,#eef2ff,#ecfeff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999999;
+  transition:opacity .7s ease, visibility .7s ease;
+}
+
+#npch-preloader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.npch-loader-box{
+  text-align:center;
+  width:320px;
+}
+
+.npch-logo{
+  width:170px;
+  margin-bottom:28px;
+  animation:npch-float 3s ease-in-out infinite,
+             npch-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes npch-float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+
+@keyframes npch-pulse{
+  0%{filter:drop-shadow(0 0 0 rgba(59,130,246,0))}
+  50%{filter:drop-shadow(0 0 18px rgba(59,130,246,.35))}
+  100%{filter:drop-shadow(0 0 0 rgba(59,130,246,0))}
+}
+
+/* Progress bar */
+.npch-bar{
+  width:100%;
+  height:6px;
+  background:#e5e7eb;
+  border-radius:6px;
+  overflow:hidden;
+  margin-bottom:18px;
+}
+
+.npch-bar span{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#0ea5e9,#6366f1);
+  transition:width .6s ease;
+}
+
+/* 3D Flip Text */
+.npch-flip-wrap{
+  perspective:900px;
+  height:26px;
+  margin-bottom:6px;
+}
+
+.npch-flip{
+  font-size:16px;
+  font-weight:500;
+  color:#334155;
+  transform-style:preserve-3d;
+  transition:transform .6s ease;
+}
+
+.npch-flip.flip{
+  transform:rotateX(180deg);
+}
+
+.npch-face{
+  backface-visibility:hidden;
+  position:absolute;
+  width:100%;
+  left:0;
+}
+
+.npch-face.back{
+  transform:rotateX(180deg);
+}
+
+/* Tagline */
+.npch-tagline{
+  font-size:13px;
+  color:#2563eb;
+  letter-spacing:.8px;
+}
+</style>
+
+<div id="npch-preloader">
+  <div class="npch-loader-box">
+
+    <img
+      src="https://npch.publit.io/file/file-0000000089bc71faaead90a6786424b1.png"
+      alt="NPCH Logo"
+      class="npch-logo"
+    >
+
+    <div class="npch-bar">
+      <span id="npch-progress"></span>
+    </div>
+
+    <div class="npch-flip-wrap">
+      <div class="npch-flip" id="npch-flip">
+        <div class="npch-face front" id="npch-front">Websites</div>
+        <div class="npch-face back" id="npch-back"></div>
+      </div>
+    </div>
+
+    <div class="npch-tagline">be digital be itoit...</div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  const words = [
+    "Websites",
+    "Apps",
+    "Payments",
+    "Forms",
+    "Tools",
+    "Digital-Marketing",
+    "AMCs",
+    "Tech-Support"
+  ];
+
+  const flip = document.getElementById("npch-flip");
+  const front = document.getElementById("npch-front");
+  const back = document.getElementById("npch-back");
+  const bar = document.getElementById("npch-progress");
+  const preloader = document.getElementById("npch-preloader");
+
+  let index = 0;
+  const totalTime = 4000; // minimum 4 sec
+  const stepTime = totalTime / words.length;
+
+  function nextWord(){
+    const next = (index + 1) % words.length;
+    back.textContent = words[next];
+
+    flip.classList.add("flip");
+
+    setTimeout(()=>{
+      front.textContent = words[next];
+      flip.classList.remove("flip");
+      index = next;
+    }, 600);
+
+    bar.style.width = ((index + 1) / words.length) * 100 + "%";
+  }
+
+  const interval = setInterval(nextWord, stepTime);
+
+  const start = Date.now();
+  window.addEventListener("load", ()=>{
+    const elapsed = Date.now() - start;
+    const remaining = Math.max(0, totalTime - elapsed);
+
+    setTimeout(()=>{
+      clearInterval(interval);
+      bar.style.width = "100%";
+      preloader.classList.add("hide");
+    }, remaining);
+  });
+})();
+</script>
+<!-- End NPCH Preloader -->
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- NPCH Slide-Out SaaS Tools FAB -->
+<style>
+/* 🔒 Fully scoped */
+.npch-fab-wrapper {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 99999;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Explore Button */
+.npch-fab-main {
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    color: #fff;
+    padding: 11px 18px;
+    border-radius: 26px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 12px 30px rgba(0,140,255,0.45);
+    animation: npchFloat 3s ease-in-out infinite, npchGlow 2s ease-in-out infinite;
+    transition: transform 0.35s ease;
+}
+
+.npch-fab-main:hover {
+    transform: scale(1.08);
+}
+
+/* Slide-out container */
+.npch-fab-panel {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transform: translateX(-110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.45s cubic-bezier(.25,.8,.25,1);
+}
+
+/* Open state */
+.npch-fab-wrapper.npch-open .npch-fab-panel {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Tool buttons */
+.npch-fab-btn {
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    color: #fff;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 22px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0,140,255,0.35);
+    animation: npchFloat 3s ease-in-out infinite, npchGlow 2s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.npch-fab-btn:hover {
+    transform: translateX(6px) scale(1.05);
+}
+
+/* Powered text */
+.npch-powered {
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: left;
+    color: #00eaff;
+    text-shadow: 0 0 8px rgba(0,234,255,0.8);
+    animation: npchBounce3D 2.5s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes npchFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes npchGlow {
+    0% { box-shadow: 0 8px 18px rgba(0,140,255,0.4); }
+    50% { box-shadow: 0 14px 32px rgba(0,200,255,0.8); }
+    100% { box-shadow: 0 8px 18px rgba(0,140,255,0.4); }
+}
+
+@keyframes npchBounce3D {
+    0%,100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-6px) rotateX(20deg);
+    }
+}
+
+/* 📱 Mobile */
+@media (max-width: 600px) {
+    .npch-fab-main {
+        font-size: 12px;
+        padding: 9px 14px;
+    }
+    .npch-fab-btn {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+}
+</style>
+
+<div class="npch-fab-wrapper" id="npchFab">
+
+    <!-- Slide Panel -->
+    <div class="npch-fab-panel">
+
+        <a class="npch-fab-btn" href="https://npch.in/qr-generator/" target="_blank">
+            UPI QR Create
+        </a>
+
+        <a class="npch-fab-btn" href="https://npch.in/binary-morse-code/" target="_blank">
+            Binary / Morse Code
+        </a>
+
+        <a class="npch-fab-btn" href="http://npch.in/qr-code-scanner/" target="_blank">
+            QR Code Scanner
+        </a>
+
+        <a class="npch-fab-btn" href="https://npch.in/url-to-qr-generator/" target="_blank">
+            URL to QR Generator
+        </a>
+
+        <a class="npch-fab-btn" href="https://npch.in/image-compressor/" target="_blank">
+            Image Compressor
+        </a>
+
+        <a class="npch-fab-btn" href="https://npch.in/image-to-pdf-converter/" target="_blank">
+            PDF Converter
+        </a>
+
+        <a class="npch-fab-btn" href="https://npch.in/payment-link-generator/" target="_blank">
+            Payment Link Generator
+        </a>
+
+        <div class="npch-powered">
+            ⚡ Powered by ITOIT INDIA
+        </div>
+
+    </div>
+
+    <!-- Main Button -->
+    <button class="npch-fab-main" id="npchToggle">
+        Explore Tools
+    </button>
+
+</div>
+
+<script>
+const fab = document.getElementById("npchFab");
+const toggle = document.getElementById("npchToggle");
+
+toggle.addEventListener("click", function (e) {
+    e.stopPropagation();
+    fab.classList.toggle("npch-open");
+    toggle.textContent = fab.classList.contains("npch-open")
+        ? "Close Tools"
+        : "Explore Tools";
+});
+
+/* Auto close on outside click */
+document.addEventListener("click", function (e) {
+    if (!fab.contains(e.target)) {
+        fab.classList.remove("npch-open");
+        toggle.textContent = "Explore Tools";
+    }
+});
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ITOIT HOLOGRAM NEON TYPING TOOL (AUTO-FIT) -->
+<style>
+/* ===== SCOPED ROOT ===== */
+#itoit-hologram{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  padding:24px 10px;
+  perspective:1000px;
+}
+
+/* ===== FLOATING BOARD ===== */
+#itoit-hologram .itoit-board{
+  border:2px solid rgba(255,255,255,0.15);
+  border-radius:16px;
+  padding:18px 22px;
+  width:100%;
+  max-width:720px;
+  height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+
+  box-shadow:
+    0 14px 34px rgba(0,0,0,0.4),
+    0 0 28px rgba(0,234,255,0.3);
+
+  animation:itoitFloat 6s ease-in-out infinite;
+}
+
+/* ===== FLOAT ===== */
+@keyframes itoitFloat{
+  0%,100%{ transform:translateY(0) rotateX(0); }
+  50%{ transform:translateY(-6px) rotateX(3deg); }
+}
+
+/* ===== TEXT ===== */
+#itoit-hologram h1{
+  text-align:center;
+  white-space:nowrap;
+  line-height:1.2;
+  font-size:36px;
+  min-font-size:16px;
+
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,0.45));
+  transition:background-image .4s ease;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:480px){
+  #itoit-hologram .itoit-board{
+    height:108px;
+    padding:16px;
+  }
+}
+</style>
+
+<div id="itoit-hologram">
+  <div class="itoit-board">
+    <h1 id="itoitText"></h1>
+  </div>
+</div>
+
+<script>
+/* ===== ISOLATED JS + AUTO FONT FIT ===== */
+(function(){
+  const lines = [
+    { text:"You imagine we create", gradient:"linear-gradient(90deg,#00eaff,#6effc8)" },
+    { text:"Powerfull Tools", gradient:"linear-gradient(90deg,#ffd54a,#ff9f00)" },
+
+    { text:"Custom UPI Payment Gateway", gradient:"linear-gradient(90deg,#7c7cff,#00eaff)" },
+    { text:"Customized Cryptocurrency Ecosystems", gradient:"linear-gradient(90deg,#00ffa2,#00eaff)" },
+
+    { text:"Digital Forms", gradient:"linear-gradient(90deg,#ff6ec7,#ffc7a5)" },
+    { text:"Web & Apps", gradient:"linear-gradient(90deg,#00ffa2,#00eaff)" },
+
+    { text:"Annual Maintenance Contracts", gradient:"linear-gradient(90deg,#ffd54a,#6effc8)" },
+    { text:"Reliable Technical Support", gradient:"linear-gradient(90deg,#ff6ec7,#ff9f00)" },
+
+    { text:"Powered by itoit", gradient:"linear-gradient(90deg,#ffd54a,#6effc8)" },
+    { text:"Created by NPCH", gradient:"linear-gradient(90deg,#00eaff,#ffd54a)" },
+    { text:"Crafted with ❤️ in India", gradient:"linear-gradient(90deg,#ff6ec7,#ff9f00)" },
+    { text:"Get it now", gradient:"linear-gradient(90deg,#00eaff,#ffd54a)" }
+  ];
+
+  const el = document.getElementById("itoitText");
+  const board = document.querySelector(".itoit-board");
+
+  let i = 0, c = 0, del = false;
+  const type = 70, erase = 40, hold = 1000;
+
+  function autoFit(){
+    let size = 36;
+    el.style.fontSize = size + "px";
+    while(el.scrollWidth > board.clientWidth - 20 && size > 16){
+      size--;
+      el.style.fontSize = size + "px";
+    }
+  }
+
+  function loop(){
+    const item = lines[i];
+    el.style.backgroundImage = item.gradient;
+
+    if(!del){
+      el.textContent = item.text.slice(0, ++c);
+      autoFit();
+      if(c === item.text.length) setTimeout(()=>del=true, hold);
+    }else{
+      el.textContent = item.text.slice(0, --c);
+      autoFit();
+      if(c === 0){
+        del = false;
+        i = (i + 1) % lines.length;
+      }
+    }
+    setTimeout(loop, del ? erase : type);
+  }
+  loop();
+})();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ================= CREATE DIGITAL ENQUIRY (ALIVE + NEON UI) ================= -->
+<div id="npch-digital-root-9927">
+
+  <!-- NEON BUTTON -->
+  <button id="npch-digital-open-9927">Book a service</button>
+
+  <!-- MODAL -->
+  <div id="npch-digital-modal-9927" class="npch-digital-modal-9927">
+    <form id="npch-digital-form-9927" class="npch-digital-form-9927">
+      <span id="npch-digital-close-9927" class="npch-digital-close-9927">&times;</span>
+
+      <h4 class="npch-title-9927">🚀 Submit Requirements</h4>
+
+      <div class="npch-field-9927">
+        <input name="business_name" required placeholder=" ">
+        <label>Business Name</label>
+      </div>
+
+      <div class="npch-field-9927">
+        <input name="full_name" required placeholder=" ">
+        <label>Full Name</label>
+      </div>
+
+      <div class="npch-field-9927">
+        <input type="email" name="email" required placeholder=" ">
+        <label>Email</label>
+      </div>
+
+      <div class="npch-field-9927">
+        <input name="contact" required pattern="[0-9]{10}" placeholder=" ">
+        <label>Contact</label>
+      </div>
+
+      <!-- PRODUCTS -->
+      <div class="npch-multi-9927">
+        <label>Select Product(s)</label>
+        <div class="npch-options-9927">
+          <label><input type="checkbox" name="products[]" value="Website"> Website</label>
+          <label><input type="checkbox" name="products[]" value="Application"> Application</label>
+          <label><input type="checkbox" name="products[]" value="Payment Gateway"> Payment Gateway</label>
+          <label><input type="checkbox" name="products[]" value="Digital Forms"> Digital Forms</label>
+          <label><input type="checkbox" name="products[]" value="Annual Maintenance Contract Service"> Annual Maintenance Contract (AMC) Service</label>
+          <label><input type="checkbox" name="products[]" value="Other / Customized"> Other / Customized</label>
+        </div>
+      </div>
+
+      <div class="npch-field-9927">
+        <textarea name="message" rows="2" placeholder=" "></textarea>
+        <label>Message</label>
+      </div>
+
+      <button type="submit" class="npch-submit-9927">📩 Submit Enquiry</button>
+
+      <div id="npch-digital-status-9927"></div>
+      <div class="npch-powered-9927">Powered by <b>NPCH India</b></div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= STYLES ================= -->
+<style>
+#npch-digital-root-9927{
+  font-family:Segoe UI,Roboto,Arial,sans-serif;
+}
+
+/* ===== NEON BORDER RUN BUTTON ===== */
+#npch-digital-open-9927{
+  position:relative;
+  display:block;
+  margin:30px auto;
+  padding:14px 38px;
+  font-size:16px;
+  border-radius:40px;
+  background:#050505;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  letter-spacing:.4px;
+  border:none;
+  overflow:hidden;
+  z-index:1;
+  box-shadow:
+    0 0 8px rgba(0,123,255,.4),
+    0 0 18px rgba(0,123,255,.25);
+}
+
+/* RUNNING NEON BORDER */
+#npch-digital-open-9927::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:40px;
+  padding:1.5px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    #00b7ff 40%,
+    #00f7ff 50%,
+    #00b7ff 60%,
+    transparent 100%);
+  background-size:300% 100%;
+  animation:neonBorderRun 2.2s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  pointer-events:none;
+}
+
+/* SOFT GLOW */
+#npch-digital-open-9927::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:40px;
+  box-shadow:0 0 14px rgba(0,160,255,.35);
+  opacity:.6;
+  z-index:-1;
+}
+
+@keyframes neonBorderRun{
+  0%{background-position:0% 50%}
+  100%{background-position:300% 50%}
+}
+
+/* MODAL */
+.npch-digital-modal-9927{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:99999;
+  justify-content:center;
+  align-items:center;
+}
+
+.npch-digital-form-9927{
+  position:relative;
+  width:90%;
+  max-width:360px;
+  max-height:65vh;
+  overflow:auto;
+  background:#fff;
+  padding:16px;
+  border-radius:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  animation:floatForm 3s ease-in-out infinite;
+}
+
+@keyframes floatForm{
+  50%{transform:translateY(-6px)}
+}
+
+.npch-digital-close-9927{
+  position:absolute;
+  top:10px;
+  right:12px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.npch-title-9927{
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.npch-field-9927{
+  position:relative;
+  margin-bottom:12px;
+}
+
+.npch-field-9927 input,
+.npch-field-9927 textarea{
+  width:100%;
+  padding:9px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:13px;
+}
+
+.npch-field-9927 label{
+  position:absolute;
+  left:10px;
+  top:-7px;
+  font-size:10px;
+  background:#fff;
+  padding:0 4px;
+}
+
+.npch-multi-9927{
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.npch-options-9927 label{
+  display:block;
+}
+
+.npch-submit-9927{
+  width:100%;
+  padding:11px;
+  background:linear-gradient(135deg,#000,#222);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+#npch-digital-status-9927{
+  text-align:center;
+  font-size:12px;
+  margin-top:8px;
+}
+
+.npch-powered-9927{
+  text-align:center;
+  font-size:10px;
+  color:#666;
+  margin-top:6px;
+}
+</style>
+
+<!-- ================= SCRIPT (ONLY JSON REMOVED) ================= -->
+<script>
+(function(){
+  const open=document.getElementById("npch-digital-open-9927");
+  const modal=document.getElementById("npch-digital-modal-9927");
+  const close=document.getElementById("npch-digital-close-9927");
+  const form=document.getElementById("npch-digital-form-9927");
+  const status=document.getElementById("npch-digital-status-9927");
+
+  open.onclick=()=>modal.style.display="flex";
+  close.onclick=()=>modal.style.display="none";
+  modal.onclick=e=>{if(e.target===modal)modal.style.display="none"};
+
+  form.onsubmit=e=>{
+    e.preventDefault();
+    status.innerHTML="⏳ Sending enquiry...";
+
+    fetch("https://script.google.com/macros/s/AKfycbwOGdeQF6FVvlma5X8MITQHwH0lT43ROSy2rd2fcwXKSgprvmquF2BVnGvi1dJCJZc/exec",{
+      method:"POST",
+      body:new FormData(form)
+    })
+    .then(()=>{
+      status.innerHTML="✅ Enquiry sent successfully!";
+      form.reset();
+    })
+    .catch(()=>{
+      status.innerHTML="❌ Failed to send enquiry.";
+    });
+  };
+})();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ================= TECHNICIAN BOOKING | MICRO NEON BORDER ================= -->
+<style>
+#npch-tech *{
+  box-sizing:border-box;
+  font-family:Segoe UI,Roboto,Arial;
+}
+
+/* ===== NEON BORDER RUN BUTTON ===== */
+#npch-tech-btn{
+  position:relative;
+  display:inline-block;
+  margin:20px auto;
+  padding:14px 38px;
+  font-size:16px;
+  border-radius:40px;
+  background:#050505;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  letter-spacing:.4px;
+  border:none;
+  overflow:hidden;
+  z-index:1;
+
+  box-shadow:
+    0 0 8px rgba(0,123,255,.4),
+    0 0 18px rgba(0,123,255,.25);
+}
+
+/* MICRO NEON RUNNING BORDER */
+#npch-tech-btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:40px;
+  padding:1.5px;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      #00b7ff 40%,
+      #00f7ff 50%,
+      #00b7ff 60%,
+      transparent 100%);
+  background-size:300% 100%;
+  animation:neonBorderRun 2.2s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+
+  pointer-events:none;
+}
+
+/* SOFT BACK GLOW */
+#npch-tech-btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:40px;
+  box-shadow:0 0 14px rgba(0,160,255,.35);
+  opacity:.6;
+  z-index:-1;
+}
+
+@keyframes neonBorderRun{
+  0%{background-position:0% 50%}
+  100%{background-position:300% 50%}
+}
+
+/* OVERLAY */
+#npch-tech-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+}
+
+/* MODAL */
+#npch-tech-box{
+  width:100%;
+  max-width:420px;
+  height:60vh;
+  max-height:520px;
+  background:#fff;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+/* HEADER */
+#npch-tech-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+#npch-tech-head h3{margin:0;font-size:17px}
+#npch-tech-close{font-size:22px;cursor:pointer}
+
+/* CONTENT */
+#npch-tech-content{
+  overflow-y:auto;
+  padding-right:4px;
+}
+
+/* INPUTS */
+#npch-tech-box input,
+#npch-tech-box textarea{
+  width:100%;
+  padding:10px 12px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+#npch-tech-box textarea{
+  resize:none;
+  height:70px;
+}
+
+/* DEVICES */
+.device-box{margin-bottom:12px}
+.device-box label{
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:6px;
+  display:block;
+}
+.device-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.device-options label{
+  font-size:12px;
+  background:#f1f3f5;
+  padding:6px 10px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* SUBMIT */
+#npch-tech-submit{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:linear-gradient(135deg,#000,#222);
+  color:#fff;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+#npch-tech-submit.loading{opacity:.7}
+
+/* STATUS */
+#npch-tech-success,
+#npch-tech-error{
+  display:none;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+}
+#npch-tech-error{color:#dc3545}
+
+/* NOTE */
+#npch-tech-note{
+  font-size:12px;
+  color:#666;
+  margin-top:8px;
+  text-align:center;
+}
+</style>
+
+<div id="npch-tech">
+
+  <div style="text-align:center;">
+    <button id="npch-tech-btn">Book Technician</button>
+  </div>
+
+  <div id="npch-tech-overlay">
+    <div id="npch-tech-box">
+
+      <div id="npch-tech-head">
+        <h3>Book Technician</h3>
+        <span id="npch-tech-close">&times;</span>
+      </div>
+
+      <div id="npch-tech-content">
+        <p id="npch-tech-greet"></p>
+
+        <form id="npch-tech-form">
+          <input name="company" placeholder="Company Name (Optional)">
+          <input name="name" placeholder="Name" required>
+          <input name="email" type="email" placeholder="Email" required>
+          <input name="contact" placeholder="Contact" required>
+
+          <textarea name="issue" placeholder="Describe Issue" required></textarea>
+
+          <div class="device-box">
+            <label>Select device to fix</label>
+            <div class="device-options">
+              <label><input type="checkbox" value="Desktop"> Desktop</label>
+              <label><input type="checkbox" value="Laptop"> Laptop</label>
+              <label><input type="checkbox" value="Server"> Server</label>
+              <label><input type="checkbox" value="CCTV"> CCTV</label>
+              <label><input type="checkbox" value="Networking Devices"> Networking</label>
+              <label><input type="checkbox" value="Printers"> Printers</label>
+              <label><input type="checkbox" value="Windows Issue"> Windows</label>
+              <label><input type="checkbox" value="MacBook"> MacBook</label>
+            </div>
+          </div>
+
+          <textarea name="address" placeholder="Address" required></textarea>
+
+          <button id="npch-tech-submit">Book Technician</button>
+        </form>
+
+        <div id="npch-tech-success">
+          <h4>✅ Ticket Raised</h4>
+          <p id="npch-tech-ticket"></p>
+        </div>
+
+        <div id="npch-tech-error">
+          ❌ Failed to raise your ticket.<br>Please try again.
+        </div>
+
+        <div id="npch-tech-note">
+          • Serving Jaipur, Rajasthan only<br>
+          • Fixed service charge ₹499
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL="PASTE_YOUR_SCRIPT_URL_HERE";
+
+const btn=document.getElementById("npch-tech-btn"),
+overlay=document.getElementById("npch-tech-overlay"),
+closeBtn=document.getElementById("npch-tech-close"),
+form=document.getElementById("npch-tech-form"),
+submit=document.getElementById("npch-tech-submit"),
+success=document.getElementById("npch-tech-success"),
+errorBox=document.getElementById("npch-tech-error"),
+ticket=document.getElementById("npch-tech-ticket"),
+greet=document.getElementById("npch-tech-greet");
+
+btn.onclick=()=>{overlay.style.display="flex";setGreeting();}
+closeBtn.onclick=resetForm;
+overlay.onclick=e=>{if(e.target===overlay)resetForm();}
+
+function setGreeting(){
+  const h=new Date().getHours();
+  greet.textContent=h<12?"Good Morning!":h<18?"Good Afternoon!":"Good Evening!";
+}
+
+function resetForm(){
+  overlay.style.display="none";
+  form.reset();
+  form.style.display="block";
+  success.style.display="none";
+  errorBox.style.display="none";
+  submit.textContent="Book Technician";
+  submit.classList.remove("loading");
+}
+
+form.onsubmit=e=>{
+  e.preventDefault();
+  submit.textContent="Processing...";
+  submit.classList.add("loading");
+  errorBox.style.display="none";
+
+  const devices=[...form.querySelectorAll('input[type=checkbox]:checked')]
+    .map(cb=>cb.value);
+
+  const payload=Object.fromEntries(new FormData(form));
+  payload.devices=devices;
+
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(payload)
+  })
+  .then(r=>r.json())
+  .then(res=>{
+    submit.classList.remove("loading");
+    submit.textContent="Book Technician";
+
+    if(res.success){
+      form.style.display="none";
+      ticket.innerHTML=`Your Ticket ID: <strong>${res.ticketId}</strong><br>
+      We will contact you shortly for confirmation.`;
+      success.style.display="block";
+    }else{
+      errorBox.style.display="block";
+    }
+  })
+  .catch(()=>{
+    submit.classList.remove("loading");
+    submit.textContent="Book Technician";
+    errorBox.style.display="block";
+  });
+};
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ================= NPCH AMC BOOKING (ALIVE UI) ================= -->
+<div id="npch-amc-root-7814">
+
+  <!-- HEARTBEAT BUTTON -->
+  <button id="npch-amc-open-7814" class="npch-amc-btn-7814">
+    Book AMCs Now
+  </button>
+
+  <!-- MODAL -->
+  <div id="npch-amc-modal-7814" class="npch-amc-modal-7814">
+
+    <form id="npch-amc-form-7814" class="npch-amc-form-7814">
+      <span id="npch-amc-close-7814" class="npch-amc-close-7814">&times;</span>
+
+      <h4 class="npch-title-7814">📘 Book AMCs</h4>
+
+      <div class="npch-field-7814">
+        <input name="organization" required placeholder=" ">
+        <label>Organization Name</label>
+      </div>
+
+      <div class="npch-field-7814">
+        <input name="name" required placeholder=" ">
+        <label>Name</label>
+      </div>
+
+      <div class="npch-field-7814">
+        <input name="contact" required pattern="[0-9]{10}" placeholder=" ">
+        <label>Contact</label>
+      </div>
+
+      <div class="npch-field-7814">
+        <input type="email" name="email" required placeholder=" ">
+        <label>Email</label>
+      </div>
+
+      <div class="npch-field-7814">
+        <textarea name="description" rows="2" placeholder=" "></textarea>
+        <label>Description (Optional)</label>
+      </div>
+
+      <!-- DEVICE RANGE -->
+      <div class="npch-range-wrap-7814">
+        <label>Number of Devices:
+          <b><span id="npch-amc-count-7814">0</span></b>
+        </label>
+        <input type="range" min="0" max="200" value="0" id="npch-amc-range-7814">
+        <input type="hidden" name="devices" id="npch-amc-hidden-7814">
+      </div>
+
+      <div class="npch-field-7814">
+        <textarea name="address" rows="2" required placeholder=" "></textarea>
+        <label>Complete Address</label>
+      </div>
+
+      <div class="npch-field-7814">
+        <input name="city" value="Jaipur, Rajasthan" readonly>
+        <label>City</label>
+      </div>
+
+      <div class="npch-note-7814">
+        ⚠️ Currently Servicing in <b>Jaipur, Rajasthan</b> Only
+      </div>
+
+      <button type="submit" class="npch-submit-7814">
+        🚀 Book AMCs Now
+      </button>
+
+      <div id="npch-amc-status-7814"></div>
+      <div class="npch-powered-7814">Powered by <b>NPCH India</b></div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= STYLE ================= -->
+<style>
+#npch-amc-root-7814{font-family:Segoe UI,sans-serif}
+
+/* HEARTBEAT BUTTON */
+.npch-amc-btn-7814{
+  display:block;
+  margin:30px auto;
+  padding:14px 34px;
+  font-size:16px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(135deg,#000,#333);
+  color:#fff;
+  cursor:pointer;
+  animation:heartbeat 1.4s infinite;
+}
+@keyframes heartbeat{
+  25%{transform:scale(1.05)}
+  40%{transform:scale(1)}
+  60%{transform:scale(1.08)}
+}
+
+/* MODAL */
+.npch-amc-modal-7814{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+/* FORM */
+.npch-amc-form-7814{
+  position:relative;
+  width:90%;
+  max-width:340px;
+  max-height:55vh;
+  overflow:auto;
+  background:#fff;
+  padding:16px;
+  border-radius:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  animation:floatForm 3s ease-in-out infinite;
+}
+@keyframes floatForm{
+  50%{transform:translateY(-6px)}
+}
+
+.npch-title-7814{text-align:center;margin-bottom:10px}
+
+.npch-amc-close-7814{
+  position:absolute;
+  top:10px;
+  right:12px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.npch-field-7814{position:relative;margin-bottom:12px}
+.npch-field-7814 input,
+.npch-field-7814 textarea{
+  width:100%;
+  padding:9px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:13px;
+}
+.npch-field-7814 label{
+  position:absolute;
+  left:10px;
+  top:-7px;
+  font-size:10px;
+  background:#fff;
+  padding:0 4px;
+}
+
+.npch-range-wrap-7814{margin-bottom:12px;font-size:12px}
+.npch-range-wrap-7814 input{width:100%}
+
+.npch-note-7814{
+  font-size:11px;
+  color:#b00000;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.npch-submit-7814{
+  width:100%;
+  padding:11px;
+  background:linear-gradient(135deg,#000,#222);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+#npch-amc-status-7814{
+  text-align:center;
+  font-size:12px;
+  margin-top:8px;
+}
+
+.npch-powered-7814{
+  margin-top:6px;
+  font-size:10px;
+  text-align:center;
+  color:#666;
+}
+</style>
+
+<!-- ================= SCRIPT (FIXED) ================= -->
+<script>
+(function(){
+  const open=document.getElementById("npch-amc-open-7814");
+  const modal=document.getElementById("npch-amc-modal-7814");
+  const close=document.getElementById("npch-amc-close-7814");
+  const form=document.getElementById("npch-amc-form-7814");
+  const status=document.getElementById("npch-amc-status-7814");
+
+  const range=document.getElementById("npch-amc-range-7814");
+  const count=document.getElementById("npch-amc-count-7814");
+  const hidden=document.getElementById("npch-amc-hidden-7814");
+
+  open.onclick=()=>modal.style.display="flex";
+  close.onclick=()=>modal.style.display="none";
+  modal.onclick=e=>{if(e.target===modal)modal.style.display="none"};
+
+  range.oninput=()=>{
+    count.textContent=range.value;
+    hidden.value=range.value;
+  };
+
+  function greet(){
+    const h=new Date().getHours();
+    return h<12?"Good Morning":h<17?"Good Afternoon":h<21?"Good Evening":"Hello";
+  }
+
+  form.onsubmit=function(e){
+    e.preventDefault();
+    status.innerHTML="⏳ Booking your AMC...";
+
+    fetch("https://script.google.com/macros/s/AKfycbw6m08O1wJqy2fAelbgUw9bbGRT2LFZ_nlk47Dgl5zuCjbXmBUEllcQL17I2e0qO6g/exec",{
+      method:"POST",
+      body:new FormData(form)
+    })
+    .then(r=>r.text())
+    .then(()=>{
+      status.innerHTML=`✅ <b>Booking Confirmed</b><br>${greet()}! We'll contact you soon.`;
+      form.reset();
+      count.textContent="0";
+    })
+    .catch(()=>{
+      status.innerHTML="❌ Failed to Book your AMCs. Please try again.";
+    });
+  };
+})();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ================= NPCH AUTO FLIP SERVICES (PRO SaaS) ================= -->
+<div id="npch-center-services">
+
+  <div class="npch-viewer">
+    <div class="npch-card" id="npchCard">
+      <div class="face front" id="cardA"></div>
+      <div class="face back" id="cardB"></div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+/* ================= CORE ================= */
+#npch-center-services{
+  max-width:520px;
+  margin:90px auto;
+  text-align:center;
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+  color:#e5e7eb;
+}
+
+.npch-title{
+  font-size:36px;
+  color:#a5b4fc;
+}
+
+.npch-subtitle{
+  margin:12px auto 40px;
+  color:#cbd5f5;
+}
+
+/* ================= VIEWER ================= */
+.npch-viewer{
+  perspective:1400px;
+}
+
+.npch-card{
+  position:relative;
+  width:100%;
+  height:340px;
+  transform-style:preserve-3d;
+  transition:transform .85s cubic-bezier(.4,.2,.2,1);
+  will-change:transform;
+}
+
+/* ================= FACES ================= */
+.face{
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  backface-visibility:hidden;
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:#020617;
+  border:1px solid rgba(99,102,241,.55);
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.45),
+    0 0 35px rgba(79,70,229,.45);
+}
+
+.back{
+  transform:rotateY(180deg);
+}
+
+.face h3{
+  font-size:24px;
+  color:#67e8f9;
+  margin-bottom:14px;
+}
+
+.face ul{
+  text-align:left;
+  padding-left:18px;
+}
+
+.face li{
+  margin:6px 0;
+  color:#c7d2fe;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:600px){
+  .npch-card{ height:320px; }
+}
+</style>
+
+<script>
+/* ================= DATA ================= */
+const services = [
+  {
+    title:"🌐 Website Development",
+    items:[
+      "Business & corporate websites",
+      "Custom web platforms",
+      "WordPress & CMS-based websites",
+      "Responsive & SEO-friendly design",
+      "Website maintenance & upgrades"
+    ]
+  },
+  {
+    title:"📱 Android Application Development",
+    items:[
+      "Custom Android app development",
+      "Business & utility apps",
+      "UI/UX focused design",
+      "App testing & optimization",
+      "Post-launch support & updates"
+    ]
+  },
+  {
+    title:"📢 Digital Marketing",
+    items:[
+      "Search Engine Optimization (SEO)",
+      "Social Media Marketing",
+      "Google & social media ads",
+      "Brand visibility & lead generation",
+      "Performance tracking & reporting"
+    ]
+  },
+  {
+    title:"⚙ Customized Digital Tools",
+    items:[
+      "Business automation tools",
+      "Custom dashboards & utilities",
+      "Internal workflow tools",
+      "Secure and scalable solutions",
+      "Built as per exact requirements"
+    ]
+  },
+  {
+    title:"🧾 Online Forms & Systems",
+    items:[
+      "Payment collection forms",
+      "Digital surveys & feedback systems",
+      "Registration & lead capture forms",
+      "Multi-purpose custom forms",
+      "Secure data handling & integrations"
+    ]
+  },
+  {
+    title:"💳 Customized Payment Solutions",
+    items:[
+      "UPI, cards, net banking & wallet integration",
+      "Payment forms for services, fees & subscriptions",
+      "Secure transaction handling with compliance focus",
+      "Payment automation & real-time status tracking"
+    ]
+  },
+  {
+    title:"🛠 AMC & On-Demand Tech Support",
+    items:[
+      "Regular IT system maintenance",
+      "Hardware & software support",
+      "Preventive checks & troubleshooting",
+      "Priority technical assistance",
+      "📍 Jaipur, Rajasthan only"
+    ]
+  }
+];
+
+/* ================= ENGINE ================= */
+const card = document.getElementById("npchCard");
+const faceA = document.getElementById("cardA");
+const faceB = document.getElementById("cardB");
+
+let index = 0;
+let flipped = false;
+
+function fill(el,data){
+  el.innerHTML = `
+    <h3>${data.title}</h3>
+    <ul>${data.items.map(i=>`<li>${i}</li>`).join("")}</ul>
+  `;
+}
+
+/* Initial render */
+fill(faceA, services[0]);
+
+function nextCard(){
+  index = (index + 1) % services.length;
+
+  const incoming = flipped ? faceA : faceB;
+  fill(incoming, services[index]);
+
+  card.style.transform = flipped ? "rotateY(0deg)" : "rotateY(180deg)";
+  flipped = !flipped;
+}
+
+/* ================= AUTO LOOP ================= */
+let timer = setInterval(nextCard, 5200);
+
+/* ================= MOBILE TAP ================= */
+if (window.matchMedia("(max-width: 768px)").matches) {
+  card.addEventListener("click", () => {
+    clearInterval(timer);
+    nextCard();
+    timer = setInterval(nextCard, 5200);
+  });
+}
+</script>
+<!-- ================= END ================= -->
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ================= NPCH 3D SWIPE TILES WITH ICONS ================= -->
+<style>
+#npch-swipe *{
+  box-sizing:border-box;
+  font-family:'Segoe UI',Roboto,Arial;
+}
+
+#npch-swipe{
+  position:relative;
+  width:100%;
+  max-width:900px;
+  height:200px;
+  margin:30px auto;
+  overflow:hidden;
+  border-radius:24px;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+  perspective:1000px;
+  touch-action:pan-y;
+}
+
+/* ===== NEON BORDER ===== */
+#npch-swipe::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:2px;
+  border-radius:24px;
+  background:linear-gradient(90deg,#00f5ff,#00ff85,#00f5ff);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  animation:npchNeon 3s linear infinite;
+}
+@keyframes npchNeon{
+  from{filter:hue-rotate(0deg)}
+  to{filter:hue-rotate(360deg)}
+}
+
+/* ===== TILE ===== */
+.npch-tile{
+  position:absolute;
+  inset:0;
+  padding:28px 34px;
+  color:#fff;
+  display:flex;
+  gap:18px;
+  align-items:center;
+  opacity:0;
+  transform:
+    translateX(60px)
+    scale(.92)
+    rotateY(-8deg);
+  transition:all .7s ease;
+  transform-style:preserve-3d;
+}
+
+/* ACTIVE TILE */
+.npch-tile.active{
+  opacity:1;
+  transform:
+    translateX(0)
+    scale(1)
+    rotateY(0deg);
+  z-index:2;
+}
+
+/* EXIT STATES */
+.npch-tile.exit-left{
+  opacity:0;
+  transform:
+    translateX(-60px)
+    scale(.92)
+    rotateY(8deg);
+}
+.npch-tile.exit-right{
+  opacity:0;
+  transform:
+    translateX(60px)
+    scale(.92)
+    rotateY(-8deg);
+}
+
+/* ===== ICON ===== */
+.npch-icon{
+  min-width:54px;
+  height:54px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#00f5ff,#00ff85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#00323a;
+  font-size:26px;
+  box-shadow:
+    0 10px 30px rgba(0,255,200,.35),
+    inset 0 0 0 2px rgba(255,255,255,.3);
+  transform:translateZ(40px);
+}
+
+/* ===== TEXT ===== */
+.npch-text{
+  transform:translateZ(20px);
+}
+.npch-title{
+  font-size:22px;
+  font-weight:700;
+  color:#00f5ff;
+  margin-bottom:6px;
+}
+.npch-desc{
+  font-size:14px;
+  line-height:1.6;
+  opacity:.95;
+}
+
+/* BRAND */
+.npch-brand{
+  position:absolute;
+  bottom:8px;
+  right:16px;
+  font-size:11px;
+  opacity:.6;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  #npch-swipe{height:220px}
+  .npch-title{font-size:18px}
+}
+</style>
+
+<div id="npch-swipe">
+
+  <div class="npch-tile active">
+    <div class="npch-icon">🌐</div>
+    <div class="npch-text">
+      <div class="npch-title">Websites We Offer</div>
+      <div class="npch-desc">
+        High-performance, modern websites designed to grow your brand and conversions.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-tile">
+    <div class="npch-icon">🏫</div>
+    <div class="npch-text">
+      <div class="npch-title">School Websites</div>
+      <div class="npch-desc">
+        Secure school platforms with admissions, notices, galleries and parent communication.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-tile">
+    <div class="npch-icon">🎨</div>
+    <div class="npch-text">
+      <div class="npch-title">Portfolio Websites</div>
+      <div class="npch-desc">
+        Personal branding websites for creators, freelancers and professionals.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-tile">
+    <div class="npch-icon">🛒</div>
+    <div class="npch-text">
+      <div class="npch-title">E-Commerce Websites</div>
+      <div class="npch-desc">
+        Scalable online stores with products, payments, orders and growth tools.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-tile">
+    <div class="npch-icon">🏢</div>
+    <div class="npch-text">
+      <div class="npch-title">Professional Websites</div>
+      <div class="npch-desc">
+        Corporate and service websites built for trust, SEO and lead generation.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-brand">Powered by NPCH India</div>
+</div>
+
+<script>
+(function(){
+  const slider = document.getElementById('npch-swipe');
+  const tiles = slider.querySelectorAll('.npch-tile');
+  let index = 0;
+  let startX = 0;
+  let timer;
+
+  function show(next, dir){
+    if(next === index) return;
+
+    tiles[index].classList.remove('active');
+    tiles[index].classList.add(dir === 'left' ? 'exit-left' : 'exit-right');
+
+    index = (next + tiles.length) % tiles.length;
+    tiles[index].classList.remove('exit-left','exit-right');
+    tiles[index].classList.add('active');
+  }
+
+  function next(){ show(index + 1,'left'); }
+  function prev(){ show(index - 1,'right'); }
+
+  function auto(){
+    timer = setInterval(next, 4500);
+  }
+  function stop(){
+    clearInterval(timer);
+  }
+
+  /* TOUCH */
+  slider.addEventListener('touchstart',e=>{
+    stop();
+    startX = e.touches[0].clientX;
+  });
+  slider.addEventListener('touchend',e=>{
+    const dx = e.changedTouches[0].clientX - startX;
+    if(dx > 50) prev();
+    if(dx < -50) next();
+    auto();
+  });
+
+  /* MOUSE */
+  slider.addEventListener('mousedown',e=>{
+    stop();
+    startX = e.clientX;
+  });
+  slider.addEventListener('mouseup',e=>{
+    const dx = e.clientX - startX;
+    if(dx > 50) prev();
+    if(dx < -50) next();
+    auto();
+  });
+
+  auto();
+})();
+</script>
+<!-- ================= END NPCH TOOL ================= -->
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ================= NPCH DIGITAL FORMS SLIDER ================= -->
+
+<style>
+.npch-form-swipe *{
+  box-sizing:border-box;
+  font-family:'Segoe UI',Roboto,Arial;
+}
+
+.npch-form-swipe{
+  position:relative;
+  width:100%;
+  max-width:900px;
+  height:200px;
+  margin:30px auto;
+  overflow:hidden;
+  border-radius:24px;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+  perspective:1000px;
+  touch-action:pan-y;
+}
+
+/* NEON BORDER */
+.npch-form-swipe::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:2px;
+  border-radius:24px;
+  background:linear-gradient(90deg,#00f5ff,#00ff85,#00f5ff);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  animation:npchNeon 3s linear infinite;
+}
+@keyframes npchNeon{
+  from{filter:hue-rotate(0deg)}
+  to{filter:hue-rotate(360deg)}
+}
+
+/* TILE */
+.npch-form-tile{
+  position:absolute;
+  inset:0;
+  padding:28px 34px;
+  color:#fff;
+  display:flex;
+  gap:18px;
+  align-items:center;
+  opacity:0;
+  transform:translateX(60px) scale(.92) rotateY(-8deg);
+  transition:all .7s ease;
+  transform-style:preserve-3d;
+}
+
+.npch-form-tile.active{
+  opacity:1;
+  transform:translateX(0) scale(1) rotateY(0);
+  z-index:2;
+}
+
+.npch-form-tile.exit-left{
+  opacity:0;
+  transform:translateX(-60px) scale(.92) rotateY(8deg);
+}
+.npch-form-tile.exit-right{
+  opacity:0;
+  transform:translateX(60px) scale(.92) rotateY(-8deg);
+}
+
+/* ICON */
+.npch-form-icon{
+  min-width:54px;
+  height:54px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#00f5ff,#00ff85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#00323a;
+  font-size:26px;
+  box-shadow:
+    0 10px 30px rgba(0,255,200,.35),
+    inset 0 0 0 2px rgba(255,255,255,.3);
+  transform:translateZ(40px);
+}
+
+/* TEXT */
+.npch-form-text{transform:translateZ(20px)}
+.npch-form-title{
+  font-size:22px;
+  font-weight:700;
+  color:#00f5ff;
+  margin-bottom:6px;
+}
+.npch-form-desc{
+  font-size:14px;
+  line-height:1.6;
+  opacity:.95;
+}
+
+/* BRAND */
+.npch-form-brand{
+  position:absolute;
+  bottom:8px;
+  right:16px;
+  font-size:11px;
+  opacity:.6;
+}
+
+@media(max-width:600px){
+  .npch-form-swipe{height:220px}
+  .npch-form-title{font-size:18px}
+}
+</style>
+
+<div class="npch-form-swipe">
+
+  <div class="npch-form-tile active">
+    <div class="npch-form-icon">📝</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Digital Forms Service</div>
+      <div class="npch-form-desc">
+        Custom digital forms to collect, manage and process business data securely.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">📊</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Survey Forms</div>
+      <div class="npch-form-desc">
+        Market research, feedback and opinion surveys with real-time responses.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">🎓</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Quiz & Test Forms</div>
+      <div class="npch-form-desc">
+        Online quizzes, exams and assessments for schools and institutes.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">📥</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Data Collection Forms</div>
+      <div class="npch-form-desc">
+        Registration, application and internal data collection forms.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">💳</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Payment Forms (UPI)</div>
+      <div class="npch-form-desc">
+        UPI-enabled forms for fees, donations and service payments.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">🏫</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Admission Forms</div>
+      <div class="npch-form-desc">
+        Online admission and enrollment forms for educational institutes.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">⭐</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Feedback Forms</div>
+      <div class="npch-form-desc">
+        Customer and user feedback forms to improve services.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">📢</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Complaint & Support Forms</div>
+      <div class="npch-form-desc">
+        Complaint, grievance and support request forms.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">🧑‍💼</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Job Application Forms</div>
+      <div class="npch-form-desc">
+        Recruitment forms with applicant details and uploads.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-tile">
+    <div class="npch-form-icon">📅</div>
+    <div class="npch-form-text">
+      <div class="npch-form-title">Event Registration Forms</div>
+      <div class="npch-form-desc">
+        Event, booking and RSVP registration forms.
+      </div>
+    </div>
+  </div>
+
+  <div class="npch-form-brand">Powered by NPCH India</div>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('.npch-form-swipe').forEach(slider=>{
+    const tiles=slider.querySelectorAll('.npch-form-tile');
+    let index=0,startX=0,timer;
+
+    function show(next,dir){
+      if(next===index)return;
+      tiles[index].classList.remove('active');
+      tiles[index].classList.add(dir==='left'?'exit-left':'exit-right');
+      index=(next+tiles.length)%tiles.length;
+      tiles[index].classList.remove('exit-left','exit-right');
+      tiles[index].classList.add('active');
+    }
+
+    const next=()=>show(index+1,'left');
+    const prev=()=>show(index-1,'right');
+    const auto=()=>timer=setInterval(next,4500);
+    const stop=()=>clearInterval(timer);
+
+    slider.addEventListener('touchstart',e=>{stop();startX=e.touches[0].clientX});
+    slider.addEventListener('touchend',e=>{
+      const dx=e.changedTouches[0].clientX-startX;
+      if(dx>50)prev(); if(dx<-50)next(); auto();
+    });
+
+    slider.addEventListener('mousedown',e=>{stop();startX=e.clientX});
+    slider.addEventListener('mouseup',e=>{
+      const dx=e.clientX-startX;
+      if(dx>50)prev(); if(dx<-50)next(); auto();
+    });
+
+    auto();
+  });
+})();
+</script>
+
+<!-- ================= END NPCH DIGITAL FORMS SLIDER ================= -->
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- NPCH Who We Are Widget with Neon Runner (Optimized Load & Reveal) -->
+<style>
+/* 🔒 Fully scoped – no theme interference */
+.npch-who-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 15px;
+}
+
+/* Container floats with card + badge */
+.npch-who-container {
+    position: relative;
+    display: inline-block;
+    animation: npchFloat 4s ease-in-out infinite;
+}
+
+/* Card */
+.npch-who-card {
+    position: relative;
+    max-width: 900px;
+    background: linear-gradient(135deg, #ffffff, #f4f8ff);
+    border-radius: 18px;
+    padding: 38px 32px 48px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    overflow: hidden;
+
+    /* 🔧 FIXED: softer hidden state */
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+    transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+/* Show on scroll */
+.npch-who-card.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Floating effect */
+@keyframes npchFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* Neon runner border */
+.npch-who-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    padding: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #00e5ff,
+        #7c4dff,
+        #00e5ff,
+        transparent
+    );
+    background-size: 300% 300%;
+    animation: neonRun 4s linear infinite;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+@keyframes neonRun {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+/* Heading */
+.npch-who-card h2 {
+    font-size: 34px;
+    color: #1a237e;
+    margin-bottom: 18px;
+}
+
+/* Text */
+.npch-who-card p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #444;
+    white-space: pre-line;
+}
+
+/* Badge */
+.npch-india-badge {
+    position: absolute;
+    left: 50%;
+    bottom: -22px;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #1a237e, #3949ab);
+    color: #fff;
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+    animation: badgePulse 2s infinite;
+    white-space: nowrap;
+}
+
+@keyframes badgePulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.12); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .npch-who-card h2 { font-size: 26px; }
+    .npch-who-card p { font-size: 15px; }
+}
+</style>
+
+<div class="npch-who-wrapper">
+    <div class="npch-who-container">
+        <div class="npch-who-card" id="npchWhoCard">
+            <h2>Who We Are</h2>
+            <p>
+NPCH India is a Jaipur-based digital solutions company delivering reliable, innovative, and scalable technology services to businesses across India. We specialize in transforming ideas into powerful digital experiences that help brands grow, automate, and succeed in today’s fast-evolving digital landscape.
+
+With a strong foundation in website development, Android application development, digital marketing, customized digital tools, and purpose-built online forms, we work closely with startups, SMEs, and enterprises to deliver solutions that are practical, secure, and results-driven.
+
+Our team focuses on customization over templates—whether it’s a business website, a mobile app, a digital survey, a payment form, or a tailored automation tool. Every solution we build is aligned with the client’s exact requirements, ensuring efficiency, scalability, and long-term value.
+
+In addition to our pan-India digital services, NPCH India provides on-ground IT support exclusively in Jaipur, Rajasthan. Our Annual Maintenance Contracts (AMC) and on-demand tech support services ensure smooth IT operations with fast, professional, on-site support.
+
+At NPCH India, we believe technology should simplify operations, enhance productivity, and empower growth. With a customer-first approach, transparent communication, and a commitment to quality, we aim to become a trusted long-term technology partner for every client we serve.
+            </p>
+        </div>
+
+        <div class="npch-india-badge">NPCH INDIA</div>
+    </div>
+</div>
+
+<script>
+/* 🚀 Faster, smarter reveal (no blank screen) */
+(function () {
+    const card = document.getElementById("npchWhoCard");
+
+    function revealNow() {
+        card.classList.add("show");
+    }
+
+    /* Instant reveal if already visible */
+    const rect = card.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.9) {
+        revealNow();
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealNow();
+                    observer.disconnect();
+                }
+            });
+        },
+        {
+            threshold: 0.1,
+            rootMargin: "0px 0px -80px 0px"
+        }
+    );
+
+    observer.observe(card);
+})();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- QR Code Styling Library -->
+<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+
+<style>
+/* 🔒 ITOIT QR TOOL – THEME VARIABLES */
+.itoit-qr-wrapper{
+    --bg:#ffffff;
+    --text:#111111;
+    --input-bg:#ffffff;
+    --border:#d0d0d0;
+    --shadow:rgba(0,0,0,.18);
+
+    --neon:#00eaff;
+    --neon2:#7c7cff;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+
+    border:2px solid transparent;
+    border-radius:14px;
+    padding:22px 18px;
+    max-width:340px;
+    margin:30px auto;
+    text-align:center;
+    position:relative;
+
+    background:
+      linear-gradient(var(--bg),var(--bg)) padding-box,
+      linear-gradient(120deg,var(--neon),var(--neon2),var(--neon)) border-box;
+
+    box-shadow:
+      0 18px 40px var(--shadow),
+      0 0 22px rgba(0,234,255,.35);
+}
+
+/* 🌗 AUTO DARK MODE */
+@media (prefers-color-scheme: dark){
+  .itoit-qr-wrapper{
+    --bg:#0b0f1a;
+    --text:#e5e7eb;
+    --input-bg:#12182b;
+    --border:#283055;
+    --shadow:rgba(0,0,0,.6);
+  }
+}
+
+/* ✨ Heading */
+.itoit-qr-wrapper h3{
+    margin:4px 0 14px;
+    font-size:20px;
+    letter-spacing:.4px;
+    background:linear-gradient(90deg,var(--neon),var(--neon2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 10px rgba(0,234,255,.45);
+}
+
+/* 🧾 Inputs */
+.itoit-qr-wrapper input{
+    width:100%;
+    padding:11px 12px;
+    margin:9px 0;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--input-bg);
+    color:var(--text);
+    font-size:14px;
+    transition:.25s ease;
+}
+
+.itoit-qr-wrapper input::placeholder{
+    color:#9ca3af;
+}
+
+.itoit-qr-wrapper input:focus{
+    outline:none;
+    border-color:var(--neon);
+    box-shadow:0 0 0 3px rgba(0,234,255,.25);
+}
+
+/* 🚀 Buttons */
+.itoit-qr-wrapper button{
+    width:100%;
+    padding:11px;
+    margin-top:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    color:#ffffff;
+    background:linear-gradient(135deg,#0a7cff,#00eaff);
+    box-shadow:0 10px 22px rgba(0,122,255,.35);
+    transition:.25s ease;
+}
+
+.itoit-qr-wrapper button:hover{
+    transform:translateY(-1px);
+    box-shadow:
+      0 14px 28px rgba(0,122,255,.45),
+      0 0 18px rgba(0,234,255,.45);
+}
+
+/* 📦 QR BOX */
+.itoit-qr-box{
+    margin-top:20px;
+    padding:14px;
+    border-radius:12px;
+    background:#ffffff;
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,.05),
+      0 10px 22px rgba(0,0,0,.25);
+}
+
+/* Dark QR box background */
+@media (prefers-color-scheme: dark){
+  .itoit-qr-box{
+    background:#ffffff;
+  }
+}
+
+/* ⬇️ Download hidden initially */
+.itoit-download{
+    display:none;
+}
+
+/* 🧠 Footer */
+.itoit-qr-footer{
+    font-size:12px;
+    margin-top:8px;
+    color:#9ca3af;
+}
+</style>
+
+<div class="itoit-qr-wrapper">
+    <h3>UPI QR Generator</h3>
+
+    <input type="text" class="itoit-upi" placeholder="Enter UPI ID (example@bank)">
+    <input type="text" class="itoit-name" placeholder="Enter Name">
+    <input type="number" class="itoit-amount" placeholder="Enter Amount">
+
+    <button class="itoit-generate">Generate QR</button>
+
+    <div class="itoit-qr-box"></div>
+    <div class="itoit-qr-footer">Powered by itoit india</div>
+
+    <button class="itoit-download">Download QR</button>
+</div>
+
+<script>
+(function () {
+    let qrInstance = null;
+
+    const wrapper = document.currentScript.previousElementSibling;
+    const upiInput = wrapper.querySelector('.itoit-upi');
+    const nameInput = wrapper.querySelector('.itoit-name');
+    const amountInput = wrapper.querySelector('.itoit-amount');
+    const qrBox = wrapper.querySelector('.itoit-qr-box');
+    const generateBtn = wrapper.querySelector('.itoit-generate');
+    const downloadBtn = wrapper.querySelector('.itoit-download');
+
+    function isValidUPI(upi){
+        return /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/.test(upi);
+    }
+
+    generateBtn.addEventListener('click', function () {
+        qrBox.innerHTML = '';
+        downloadBtn.style.display = "none";
+
+        const upi = upiInput.value.trim();
+        const name = nameInput.value.trim();
+        const amount = amountInput.value.trim();
+
+        if (!upi) {
+            alert('Please enter UPI ID');
+            return;
+        }
+
+        if (!isValidUPI(upi)) {
+            alert('Invalid UPI ID\nExample: name@bank');
+            return;
+        }
+
+        const upiURL = `upi://pay?pa=${upi}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+
+        qrInstance = new QRCodeStyling({
+            width: 230,
+            height: 230,
+            data: upiURL,
+            dotsOptions: {
+                color: "#000",
+                type: "rounded"
+            },
+            backgroundOptions: {
+                color: "#ffffff"
+            }
+        });
+
+        qrInstance.append(qrBox);
+        downloadBtn.style.display = "block";
+    });
+
+    downloadBtn.addEventListener('click', function () {
+        if (!qrInstance) return;
+        qrInstance.download({
+            name: "upi-qr-itoit",
+            extension: "png"
+        });
+    });
+})();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ITOIT INDIA – EMI Calculator (FULLY ISOLATED / WORDPRESS SAFE) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+/* 🔒 HARD ISOLATION ROOT */
+#itoit-emi{
+  --bg:#020617;
+  --card:rgba(15,23,42,.85);
+  --text:#e5e7eb;
+  --accent:#38bdf8;
+  --danger:#f87171;
+  --muted:#94a3b8;
+
+  max-width:540px;
+  margin:30px auto;
+  padding:18px;
+  border-radius:18px;
+  background:
+    linear-gradient(var(--card),var(--card)) padding-box,
+    linear-gradient(135deg,var(--accent),#7c7cff,var(--accent)) border-box;
+  border:2px solid transparent;
+
+  color:var(--text);
+  font-family:Segoe UI,system-ui,sans-serif;
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.55),
+    0 0 30px rgba(56,189,248,.25);
+
+  isolation:isolate; /* 🧠 KEY FIX */
+}
+
+/* 🌞 Light mode */
+#itoit-emi.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+  --accent:#0284c7;
+  --muted:#475569;
+  box-shadow:0 20px 40px rgba(0,0,0,.18);
+}
+
+/* ===== TEXT ===== */
+#itoit-emi h3{
+  text-align:center;
+  margin:0;
+  font-size:22px;
+  background:linear-gradient(90deg,var(--accent),#7c7cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+#itoit-emi .badge{
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  margin:6px 0 16px;
+}
+
+/* ===== FORM ===== */
+#itoit-emi label{
+  font-size:13px;
+  margin-top:12px;
+  display:block;
+}
+
+#itoit-emi input{
+  width:100%;
+  padding:10px 12px;
+  margin-top:5px;
+  border-radius:12px;
+  border:none;
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
+  box-shadow:inset 0 0 0 1px #1e293b;
+}
+
+#itoit-emi input:focus{
+  outline:none;
+  box-shadow:
+    inset 0 0 0 1px var(--accent),
+    0 0 0 3px rgba(56,189,248,.25);
+}
+
+/* ===== RESULT ===== */
+#itoit-emi .result{
+  margin-top:16px;
+  padding:14px;
+  background:var(--bg);
+  border-radius:14px;
+  font-size:14px;
+  display:grid;
+  gap:6px;
+}
+
+#itoit-emi .result b{
+  color:var(--accent);
+}
+
+/* ===== CHART ===== */
+#itoit-emi canvas{
+  margin-top:16px;
+  max-height:190px;
+}
+
+/* ===== BUTTONS ===== */
+#itoit-emi .btns{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
+#itoit-emi button{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+#itoit-emi .whatsapp{
+  background:#25D366;
+  color:#022c22;
+}
+
+#itoit-emi .share{
+  background:linear-gradient(135deg,var(--accent),#7c7cff);
+  color:#020617;
+}
+
+#itoit-emi .toggle{
+  background:#64748b;
+  color:#fff;
+}
+
+/* ===== TABLE ===== */
+#itoit-emi .table{
+  display:none;
+  margin-top:12px;
+  max-height:220px;
+  overflow:auto;
+  font-size:12px;
+  border-radius:12px;
+  background:var(--bg);
+}
+
+#itoit-emi table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+#itoit-emi th,
+#itoit-emi td{
+  border-bottom:1px solid #1e293b;
+  padding:6px;
+  text-align:right;
+}
+
+#itoit-emi th{
+  text-align:left;
+  color:var(--muted);
+}
+</style>
+
+<div id="itoit-emi">
+  <h3>Loan EMI Calculator</h3>
+  <div class="badge">Powered by <b>ITOIT India</b></div>
+
+  <label>Loan Amount (₹)</label>
+  <input type="number" id="amount" value="500000">
+
+  <label>Interest Rate (% per year)</label>
+  <input type="number" id="rate" step="0.01" value="9">
+
+  <label>Tenure (Months)</label>
+  <input type="number" id="tenure" value="60">
+
+  <div class="result">
+    EMI: <b id="emi">₹0</b>
+    Total Interest: <b id="totalInterest">₹0</b>
+    Total Repayment: <b id="totalPayment">₹0</b>
+  </div>
+
+  <canvas id="emiChart"></canvas>
+
+  <div class="btns">
+    <button class="whatsapp" onclick="shareWhatsApp()">WhatsApp</button>
+    <button class="share" onclick="shareEMI()">Share</button>
+    <button class="toggle" onclick="toggleTheme()">Dark / Light</button>
+  </div>
+
+  <button class="toggle" style="margin-top:12px;width:100%" onclick="toggleTable()">
+    Amortization Table
+  </button>
+
+  <div class="table" id="table"></div>
+</div>
+
+<script>
+/* JS IS ALREADY ISOLATED – NO CHANGE */
+const amount=document.getElementById("amount");
+const rate=document.getElementById("rate");
+const tenure=document.getElementById("tenure");
+const emiEl=document.getElementById("emi");
+const totalInterestEl=document.getElementById("totalInterest");
+const totalPaymentEl=document.getElementById("totalPayment");
+const table=document.getElementById("table");
+let chart;
+
+function num(v){return isNaN(v)?0:v;}
+function calculate(){
+  const P=Math.max(0,num(parseFloat(amount.value)));
+  const annual=Math.max(0,num(parseFloat(rate.value)));
+  const N=Math.max(0,num(parseInt(tenure.value)));
+  let EMI=0,totalPayment=0,totalInterest=0;
+  if(P>0&&N>0){
+    if(annual===0){EMI=P/N;totalPayment=P;}
+    else{
+      const R=annual/12/100;
+      EMI=(P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+      totalPayment=EMI*N;
+      totalInterest=totalPayment-P;
+    }
+  }
+  emiEl.innerText="₹"+EMI.toFixed(0);
+  totalInterestEl.innerText="₹"+totalInterest.toFixed(0);
+  totalPaymentEl.innerText="₹"+totalPayment.toFixed(0);
+  if(chart) chart.destroy();
+  chart=new Chart(emiChart,{
+    type:"doughnut",
+    data:{datasets:[{data:[P,totalInterest],backgroundColor:["#38bdf8","#f87171"],borderWidth:0}]},
+    options:{cutout:"70%",plugins:{legend:{display:false}}}
+  });
+}
+function toggleTable(){table.style.display=table.style.display==="block"?"none":"block";}
+function toggleTheme(){document.getElementById("itoit-emi").classList.toggle("light");}
+function shareWhatsApp(){
+  window.open("https://wa.me/?text="+encodeURIComponent(
+    `EMI ${emiEl.innerText} | Total ${totalPaymentEl.innerText}`
+  ),"_blank");
+}
+function shareEMI(){
+  const txt=`EMI ${emiEl.innerText} | Total ${totalPaymentEl.innerText}`;
+  navigator.share?navigator.share({title:"Loan EMI",text:txt}):alert(txt);
+}
+[amount,rate,tenure].forEach(i=>i.addEventListener("input",calculate));
+calculate();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- ================= NPCH OUR SERVICES (CENTER BUTTON) ================= -->
+<div id="npch-services-wrapper">
+
+  <!-- Center Button -->
+  <div class="npch-btn-center">
+    <button id="npchServiceBtn" class="npch-neon-btn">
+      <span class="btn-icon">⚡</span>
+      Our Services
+    </button>
+  </div>
+
+  <!-- Lazy Panel -->
+  <div id="npchServicePanel" class="npch-panel"></div>
+
+</div>
+
+<style>
+/* ================= WRAPPER ================= */
+#npch-services-wrapper{
+  max-width:920px;
+  margin:70px auto;
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+}
+
+/* Center button */
+.npch-btn-center{
+  display:flex;
+  justify-content:center;
+}
+
+/* ================= BUTTON (REFINED) ================= */
+.npch-neon-btn{
+  position:relative;
+  padding:14px 34px;               /* smaller */
+  font-size:15px;
+  font-weight:600;
+  color:#e5e7eb;
+  background:#020617;
+  border-radius:50px;
+  border:1px solid rgba(79,70,229,.55);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.35),
+    0 0 18px rgba(79,70,229,.35);
+  animation:floatBtn 3.5s ease-in-out infinite;
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+  will-change:transform;
+}
+
+/* Neon outline */
+.npch-neon-btn::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:50px;
+  background:linear-gradient(120deg,#22d3ee,#4f46e5,#a855f7);
+  opacity:.45;
+  z-index:-1;
+}
+
+/* Icon animation (subtle) */
+.btn-icon{
+  display:inline-block;
+  animation:iconFloat 3.5s ease-in-out infinite;
+}
+
+/* Hover */
+.npch-neon-btn:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.45),
+    0 0 32px rgba(99,102,241,.6);
+}
+
+/* Vertical float (professional) */
+@keyframes floatBtn{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-6px); }
+}
+
+/* Icon sync float */
+@keyframes iconFloat{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-3px) scale(1.15); }
+}
+
+/* ================= PANEL ================= */
+.npch-panel{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transform:translateY(-30px) scale(.97);
+  transition:all .7s cubic-bezier(.22,1,.36,1);
+}
+
+.npch-panel.show{
+  max-height:5000px;
+  opacity:1;
+  transform:translateY(0) scale(1);
+  margin-top:35px;
+}
+
+/* ================= TOOL ================= */
+#npch-services-tool{
+  max-width:920px;
+}
+
+#npch-services-tool .neon-border{
+  position:relative;
+  padding:34px;
+  border-radius:20px;
+  background:#0b0f1a;
+  color:#e5e7eb;
+  overflow:hidden;
+}
+
+#npch-services-tool .neon-border::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(120deg,#22d3ee,#4f46e5,#a855f7,#22d3ee);
+  background-size:300% 300%;
+  animation:neonMove 6s linear infinite;
+  z-index:0;
+}
+
+#npch-services-tool .neon-border::after{
+  content:"";
+  position:absolute;
+  inset:2px;
+  background:#0b0f1a;
+  border-radius:18px;
+  z-index:1;
+}
+
+#npch-services-tool .npch-box > *{
+  position:relative;
+  z-index:2;
+}
+
+#npch-services-tool h2{
+  font-size:30px;
+  color:#a5b4fc;
+}
+
+#npch-services-tool h3{
+  color:#67e8f9;
+  margin-top:22px;
+}
+
+#npch-services-tool p{
+  line-height:1.7;
+  color:#cbd5f5;
+}
+
+#npch-services-tool ul{
+  padding-left:18px;
+}
+
+#npch-services-tool li{
+  margin:6px 0;
+}
+
+#npch-services-tool .highlight{
+  background:rgba(79,70,229,.12);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 0 20px rgba(79,70,229,.35);
+}
+
+#npch-services-tool .why{
+  margin-top:30px;
+  padding:22px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#020617,#111827);
+  box-shadow:0 0 30px rgba(34,211,238,.35);
+}
+
+@keyframes neonMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+</style>
+
+<script>
+/* ================= LAZY LOAD + TOGGLE ================= */
+(function(){
+  const btn = document.getElementById("npchServiceBtn");
+  const panel = document.getElementById("npchServicePanel");
+  let loaded = false;
+
+  btn.addEventListener("click", ()=>{
+    if(!loaded){
+      panel.innerHTML = `
+      <div id="npch-services-tool">
+        <div class="npch-box neon-border">
+          <h2>Our Services</h2>
+          <p>At NPCH India, we deliver customized digital and IT solutions designed to help businesses grow,
+          operate efficiently, and stay technologically strong.</p>
+
+          <h3>🌐 Website Development</h3>
+          <ul><li>Business & corporate websites</li><li>Custom development</li><li>SEO friendly</li></ul>
+
+          <h3>📱 Android Application Development</h3>
+          <ul><li>Custom apps</li><li>UI/UX focused</li><li>Post-launch support</li></ul>
+
+          <h3>📢 Digital Marketing</h3>
+          <ul><li>SEO</li><li>Social media ads</li><li>Lead generation</li></ul>
+
+          <h3>⚙ Customized Digital Tools</h3>
+          <ul><li>Automation tools</li><li>Dashboards</li></ul>
+
+          <h3>🛠 AMC & ⚡ On-Demand Support</h3>
+          <p><strong>📍 Jaipur, Rajasthan only</strong></p>
+
+          <div class="why">
+            <strong>Why Choose NPCH India?</strong>
+            <ul>
+              <li>Customized solutions</li>
+              <li>Transparent support</li>
+              <li>Reliable technology partner</li>
+            </ul>
+          </div>
+        </div>
+      </div>`;
+      loaded = true;
+    }
+    panel.classList.toggle("show");
+  });
+})();
+</script>
+<!-- ================= END ================= -->
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<div class="itoit-slider-wrap">
+  <div class="itoit-slider">
+    <div class="itoit-slide">
+      <img src="https://npch.publit.io/file/Screenshot-20251231-152943-Business-Card.jpg">
+      <img src="https://npch.publit.io/file/Screenshot-20251231-153234-Business-Card.jpg">
+      <img src="https://npch.publit.io/file/Screenshot-20251231-150251-Business-Card.jpg">
+      <img src="https://npch.publit.io/file/Screenshot-20260101-122225-Business-Card.jpg">
+    </div>
+
+    <!-- exact clone -->
+    <div class="itoit-slide">
+      <img src="https://npch.publit.io/file/Screenshot-20251231-152943-Business-Card.jpg">
+      <img src="https://npch.publit.io/file/Screenshot-20251231-153234-Business-Card.jpg">
+      <img src="https://npch.publit.io/file/Screenshot-20251231-150251-Business-Card.jpg">
+      <img src="https://npch.publit.io/file/Screenshot-20260101-122225-Business-Card.jpg">
+    </div>
+  </div>
+</div>
+
+<style>
+/* 🔒 Fully scoped – won't touch WP theme */
+.itoit-slider-wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.itoit-slider {
+  display: flex;
+  width: max-content;
+  animation: itoit-scroll 30s linear infinite;
+}
+
+.itoit-slide {
+  display: flex;
+}
+
+.itoit-slide img {
+  width: 300px;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* ✅ TRUE seamless infinite animation */
+@keyframes itoit-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+</style>
+<!-- /wp:html -->
+
+<!-- wp:html -->
+<!-- Floating WhatsApp Button -->
+<style>
+  .wa-float {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    z-index: 9999;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .wa-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #25D366, #1ebe5d);
+    color: #ffffff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    box-shadow:
+      0 8px 22px rgba(37, 211, 102, 0.32),
+      0 3px 8px rgba(0, 0, 0, 0.14);
+    transition: all 0.25s ease;
+    animation: waFloat 3s ease-in-out infinite;
+  }
+
+  .wa-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+      0 14px 36px rgba(37, 211, 102, 0.42),
+      0 5px 14px rgba(0, 0, 0, 0.18);
+  }
+
+  .wa-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+  }
+
+  @keyframes waFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @media (max-width: 480px) {
+    .wa-btn {
+      padding: 9px 13px;
+      font-size: 12.5px;
+    }
+  }
+</style>
+
+<div class="wa-float">
+  <a 
+    class="wa-btn"
+    href="https://wa.me/8290122066?text=hello%2C%20I%20need%20some%20information%20about%201%20of%20your%20products."
+    target="_blank"
+    rel="noopener"
+  >
+    <svg class="wa-icon" viewBox="0 0 32 32" fill="currentColor">
+      <path d="M19.11 17.93c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.33-.79-.7-1.32-1.56-1.47-1.83-.15-.27-.02-.42.11-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47-.16-.01-.34-.01-.52-.01-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.64 1.12 2.82.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.57.66.21 1.26.18 1.73.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/>
+      <path d="M16.04 2.67C8.69 2.67 2.67 8.69 2.67 16.04c0 2.63.77 5.07 2.1 7.13L2.5 29.33l6.32-2.21a13.29 13.29 0 0 0 7.22 2.09c7.35 0 13.37-6.02 13.37-13.37S23.39 2.67 16.04 2.67z"/>
+    </svg>
+    WhatsApp
+  </a>
+</div>
+<!-- /wp:html -->
