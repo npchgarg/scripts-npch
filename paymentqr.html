@@ -1,0 +1,212 @@
+<!-- QR Code Styling Library -->
+<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+
+<style>
+/* 🔒 ITOIT QR TOOL – THEME VARIABLES */
+.itoit-qr-wrapper{
+    --bg:#ffffff;
+    --text:#111111;
+    --input-bg:#ffffff;
+    --border:#d0d0d0;
+    --shadow:rgba(0,0,0,.18);
+
+    --neon:#00eaff;
+    --neon2:#7c7cff;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+
+    border:2px solid transparent;
+    border-radius:14px;
+    padding:22px 18px;
+    max-width:340px;
+    margin:30px auto;
+    text-align:center;
+    position:relative;
+
+    background:
+      linear-gradient(var(--bg),var(--bg)) padding-box,
+      linear-gradient(120deg,var(--neon),var(--neon2),var(--neon)) border-box;
+
+    box-shadow:
+      0 18px 40px var(--shadow),
+      0 0 22px rgba(0,234,255,.35);
+}
+
+/* 🌗 AUTO DARK MODE */
+@media (prefers-color-scheme: dark){
+  .itoit-qr-wrapper{
+    --bg:#0b0f1a;
+    --text:#e5e7eb;
+    --input-bg:#12182b;
+    --border:#283055;
+    --shadow:rgba(0,0,0,.6);
+  }
+}
+
+/* ✨ Heading */
+.itoit-qr-wrapper h3{
+    margin:4px 0 14px;
+    font-size:20px;
+    letter-spacing:.4px;
+    background:linear-gradient(90deg,var(--neon),var(--neon2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 10px rgba(0,234,255,.45);
+}
+
+/* 🧾 Inputs */
+.itoit-qr-wrapper input{
+    width:100%;
+    padding:11px 12px;
+    margin:9px 0;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--input-bg);
+    color:var(--text);
+    font-size:14px;
+    transition:.25s ease;
+}
+
+.itoit-qr-wrapper input::placeholder{
+    color:#9ca3af;
+}
+
+.itoit-qr-wrapper input:focus{
+    outline:none;
+    border-color:var(--neon);
+    box-shadow:0 0 0 3px rgba(0,234,255,.25);
+}
+
+/* 🚀 Buttons */
+.itoit-qr-wrapper button{
+    width:100%;
+    padding:11px;
+    margin-top:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    color:#ffffff;
+    background:linear-gradient(135deg,#0a7cff,#00eaff);
+    box-shadow:0 10px 22px rgba(0,122,255,.35);
+    transition:.25s ease;
+}
+
+.itoit-qr-wrapper button:hover{
+    transform:translateY(-1px);
+    box-shadow:
+      0 14px 28px rgba(0,122,255,.45),
+      0 0 18px rgba(0,234,255,.45);
+}
+
+/* 📦 QR BOX */
+.itoit-qr-box{
+    margin-top:20px;
+    padding:14px;
+    border-radius:12px;
+    background:#ffffff;
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,.05),
+      0 10px 22px rgba(0,0,0,.25);
+}
+
+/* Dark QR box background */
+@media (prefers-color-scheme: dark){
+  .itoit-qr-box{
+    background:#ffffff;
+  }
+}
+
+/* ⬇️ Download hidden initially */
+.itoit-download{
+    display:none;
+}
+
+/* 🧠 Footer */
+.itoit-qr-footer{
+    font-size:12px;
+    margin-top:8px;
+    color:#9ca3af;
+}
+</style>
+
+<div class="itoit-qr-wrapper">
+    <h3>UPI QR Generator</h3>
+
+    <input type="text" class="itoit-upi" placeholder="Enter UPI ID (example@bank)">
+    <input type="text" class="itoit-name" placeholder="Enter Name">
+    <input type="number" class="itoit-amount" placeholder="Enter Amount">
+
+    <button class="itoit-generate">Generate QR</button>
+
+    <div class="itoit-qr-box"></div>
+    <div class="itoit-qr-footer">Powered by itoit india</div>
+
+    <button class="itoit-download">Download QR</button>
+</div>
+
+<script>
+(function () {
+    let qrInstance = null;
+
+    const wrapper = document.currentScript.previousElementSibling;
+    const upiInput = wrapper.querySelector('.itoit-upi');
+    const nameInput = wrapper.querySelector('.itoit-name');
+    const amountInput = wrapper.querySelector('.itoit-amount');
+    const qrBox = wrapper.querySelector('.itoit-qr-box');
+    const generateBtn = wrapper.querySelector('.itoit-generate');
+    const downloadBtn = wrapper.querySelector('.itoit-download');
+
+    function isValidUPI(upi){
+        return /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/.test(upi);
+    }
+
+    generateBtn.addEventListener('click', function () {
+        qrBox.innerHTML = '';
+        downloadBtn.style.display = "none";
+
+        const upi = upiInput.value.trim();
+        const name = nameInput.value.trim();
+        const amount = amountInput.value.trim();
+
+        if (!upi) {
+            alert('Please enter UPI ID');
+            return;
+        }
+
+        if (!isValidUPI(upi)) {
+            alert('Invalid UPI ID\nExample: name@bank');
+            return;
+        }
+
+        const upiURL = `upi://pay?pa=${upi}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+
+        qrInstance = new QRCodeStyling({
+            width: 230,
+            height: 230,
+            data: upiURL,
+            dotsOptions: {
+                color: "#000",
+                type: "rounded"
+            },
+            backgroundOptions: {
+                color: "#ffffff"
+            }
+        });
+
+        qrInstance.append(qrBox);
+        downloadBtn.style.display = "block";
+    });
+
+    downloadBtn.addEventListener('click', function () {
+        if (!qrInstance) return;
+        qrInstance.download({
+            name: "upi-qr-itoit",
+            extension: "png"
+        });
+    });
+})();
+</script>
