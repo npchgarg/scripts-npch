@@ -1,152 +1,228 @@
-<!-- NPCH STICKY MENU – FINAL STABLE -->
+<!-- wp:html -->
+<!-- ================= NPCH TRANSPARENT TOP BAR ================= -->
 <style>
-#npch-root{
-  --bg: rgba(10,14,30,.92);
-  --border: rgba(255,255,255,.08);
-  --neon:#00f6ff;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
+/* FORCE HIDE ANY EXISTING HEADER / MENU */
+header,
+nav,
+.navbar,
+.site-header,
+#masthead,
+.wp-site-blocks header,
+.elementor-header,
+.elementor-location-header,
+[data-elementor-type="header"]{
+  display:none !important;
+  visibility:hidden !important;
+  height:0 !important;
+  overflow:hidden !important;
 }
 
-/* SPACE HOLDER */
-#npch-gap{height:72px}
-
-/* HEADER */
-#npch-header{
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:72px;
-  background:var(--bg);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-  z-index:100000;
-}
-
-#npch-header .inner{
-  max-width:1280px;
-  height:100%;
-  margin:auto;
-  padding:0 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+/* TOP BAR */
+#npch-topbar{
+ position:fixed;top:0;left:0;right:0;
+ height:70px;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 18px;
+ background:transparent !important;
+ color:#111;
+ z-index:999999;
+ transition:.3s;
 }
 
 /* LOGO */
-#npch-header .logo img{
-  height:44px;
-  display:block;
-  filter:
-    drop-shadow(0 0 6px var(--neon))
-    drop-shadow(0 0 14px rgba(0,246,255,.6));
+#npch-logo img{
+ height:42px;
+ border-radius:10px;
 }
 
-/* MENU ICON */
-#npch-header .ham{
-  font-size:26px;
-  background:none;
-  border:none;
-  color:#fff;
-  cursor:pointer;
+/* MENU BUTTON */
+#npch-menu-btn{
+ width:46px;height:46px;
+ border-radius:14px;
+ border:none;
+ cursor:pointer;
+ position:relative;
+ background:rgba(255,255,255,.9);
+ box-shadow:0 8px 25px rgba(0,0,0,.25);
+ transition:.3s;
+}
+#npch-menu-btn i{
+ position:absolute;
+ left:50%;top:50%;
+ width:22px;height:2.5px;
+ background:#111;
+ border-radius:2px;
+ transform:translate(-50%,-50%);
+}
+#npch-menu-btn i:before,
+#npch-menu-btn i:after{
+ content:"";
+ position:absolute;
+ width:22px;height:2.5px;
+ background:#111;
+ border-radius:2px;
+ left:0;
+}
+#npch-menu-btn i:before{top:-7px}
+#npch-menu-btn i:after{top:7px}
+
+/* X ICON */
+#npch-menu-btn.active i{background:transparent}
+#npch-menu-btn.active i:before{
+ transform:rotate(45deg) translate(5px,5px);
+}
+#npch-menu-btn.active i:after{
+ transform:rotate(-45deg) translate(5px,-5px);
 }
 
-/* OVERLAY (REMOVED COMPLETELY WHEN CLOSED) */
+/* OVERLAY */
 #npch-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:99998;
-  display:none;
+ position:fixed;inset:0;
+ background:rgba(0,0,0,.45);
+ opacity:0;
+ pointer-events:none;
+ transition:.3s;
+ z-index:999998;
+}
+#npch-overlay.active{
+ opacity:1;
+ pointer-events:auto;
 }
 
-/* DRAWER (DISPLAY NONE WHEN CLOSED) */
-#npch-drawer{
-  position:fixed;
-  top:0;
-  right:0;
-  width:300px;
-  height:100%;
-  background:#0b1022;
-  padding:20px;
-  z-index:99999;
-  transform:translateX(100%);
-  transition:transform .35s ease;
-  display:none;
+/* PANEL */
+#npch-panel{
+ position:fixed;
+ top:0;right:-360px;
+ width:340px;height:100%;
+ background:linear-gradient(180deg,#0f172a,#020617);
+ padding:18px;
+ transition:.4s;
+ z-index:999999;
+ color:#fff;
+ overflow-y:auto;
 }
-
-/* ACTIVE STATES */
-#npch-overlay.active{display:block}
-#npch-drawer.active{
-  display:block;
-  transform:translateX(0);
-}
+#npch-panel.active{right:0}
 
 /* CLOSE */
-#npch-drawer .close{
-  font-size:24px;
-  background:none;
-  border:none;
-  color:#fff;
-  float:right;
-  cursor:pointer;
+#npch-close{
+ text-align:right;
+ font-size:22px;
+ cursor:pointer;
+ margin-bottom:12px;
 }
 
-/* INPUT */
-#npch-drawer input{
-  width:100%;
-  margin:20px 0;
-  padding:10px;
-  border-radius:10px;
-  background:#111;
-  border:1px solid rgba(255,255,255,.2);
-  color:#fff;
+/* LINKS */
+.npch-link{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ padding:14px 16px;
+ border-radius:14px;
+ text-decoration:none;
+ color:#fff;
+ background:rgba(255,255,255,.08);
+ margin-bottom:10px;
+ transition:.3s;
+ cursor:pointer;
 }
+.npch-link:hover{background:#4f46e5}
+
+/* SUBMENU */
+.npch-submenu{
+ max-height:0;
+ overflow:hidden;
+ transition:max-height .35s ease;
+ margin-left:8px;
+}
+.npch-submenu.open{max-height:600px}
+.npch-submenu a{
+ display:flex;
+ gap:10px;
+ padding:12px 14px;
+ margin:8px 0;
+ border-radius:12px;
+ text-decoration:none;
+ color:#fff;
+ background:rgba(255,255,255,.06);
+ font-size:14px;
+}
+
+/* PAGE OFFSET */
+body{padding-top:70px!important}
 </style>
 
-<div id="npch-root">
-  <div id="npch-gap"></div>
+<!-- TOP BAR -->
+<div id="npch-topbar">
+ <div id="npch-logo">
+  <img src="https://npch.publit.io/file/file-0000000089bc71faaead90a6786424b1-1024x683.png">
+ </div>
 
-  <header id="npch-header">
-    <div class="inner">
-      <div class="logo">
-        <img src="https://npch.publit.io/file/file-0000000089bc71faaead90a6786424b1-1024x683.png" alt="NPCH">
-      </div>
-      <button class="ham" onclick="npchOpen()">☰</button>
-    </div>
-  </header>
+ <button id="npch-menu-btn" onclick="openMenu()">
+  <i></i>
+ </button>
+</div>
 
-  <div id="npch-overlay" onclick="npchClose()"></div>
+<div id="npch-overlay" onclick="closeMenu()"></div>
 
-  <aside id="npch-drawer">
-    <button class="close" onclick="npchClose()">✕</button>
-    <input type="search" placeholder="Search…">
-    <!-- MENU ITEMS HERE -->
-  </aside>
+<!-- PANEL -->
+<div id="npch-panel">
+ <div id="npch-close" onclick="closeMenu()">✕</div>
+
+ <a class="npch-link" href="https://npch.in">🏠 Home</a>
+ <a class="npch-link" href="https://npch.in/about">ℹ️ About</a>
+ <a class="npch-link" href="https://npch.in/services">🛠 Services</a>
+ <a class="npch-link" href="https://npch.in/join-us">🤝 Work With Us</a>
+
+ <div class="npch-link toggle">📢 Sponsored</div>
+ <div class="npch-submenu">
+  <a href="https://npch.in/240-2/">📝 Ad Diarywala Registration</a>
+ </div>
+
+ <div class="npch-link toggle">🧰 Tools</div>
+ <div class="npch-submenu">
+  <a href="https://npch.in/qr-generator/">💳 Payment QR Create</a>
+  <a href="https://npch.in/crypto-updates/">📈 Crypto Updates</a>
+  <a href="https://npch.in/qr-code-scanner/">📷 QR Scanner</a>
+  <a href="https://npch.in/payment-link-generator/">🔗 Payment Link Create</a>
+  <a href="https://npch.in/url-to-qr-generator/">🌐 URL to QR</a>
+  <a href="https://npch.in/binary-morse-code/">🔡 Binary & Morse Code</a>
+  <a href="https://npch.in/image-compressor/">🖼 Image Size Reduce</a>
+  <a href="https://npch.in/image-to-pdf-converter/">📄 Image to PDF</a>
+  <a href="https://npch.in/loan-emi-calculator/">🏦 EMI Calculator</a>
+ </div>
+
+ <a class="npch-link" href="https://npch.in/privacy-policy-2/">🔐 Privacy Policy</a>
 </div>
 
 <script>
-const drawer = document.getElementById('npch-drawer');
-const overlay = document.getElementById('npch-overlay');
+const panel=document.getElementById('npch-panel');
+const overlay=document.getElementById('npch-overlay');
+const menuBtn=document.getElementById('npch-menu-btn');
 
-function npchOpen(){
-  overlay.classList.add('active');
-  drawer.classList.add('active');
-  document.body.style.overflow='hidden';
+function openMenu(){
+ panel.classList.add('active');
+ overlay.classList.add('active');
+ menuBtn.classList.add('active');
+}
+function closeMenu(){
+ panel.classList.remove('active');
+ overlay.classList.remove('active');
+ menuBtn.classList.remove('active');
 }
 
-function npchClose(){
-  drawer.classList.remove('active');
-  overlay.classList.remove('active');
-  document.body.style.overflow='';
-}
+// close when clicking link
+document.querySelectorAll('#npch-panel a').forEach(a=>{
+ a.onclick=closeMenu;
+});
+
+// submenu toggle
+document.querySelectorAll('.toggle').forEach(t=>{
+ t.onclick=()=>t.nextElementSibling.classList.toggle('open');
+});
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="theme-color" content="#0b0b0b">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- ================= END ================= -->
+<!-- /wp:html -->
 
-
-<!DOCTYPE html> 
 <!-- wp:html -->
 <!-- ================= NPCH INDIA OFFER POPUP ================= -->
 <style>
@@ -295,7 +371,7 @@ function npchClose(){
     <div class="npch-title">🔥 Website Offer</div>
 
     <div class="npch-text">
-      Websites starting from <b>₹1999/-*</b> only.<br>
+      Websites starting from <b>₹499/-*</b> only.<br>
       Offer valid for <b>limited time</b>.<br>
       <b>Grab it now!</b>
     </div>
@@ -762,21 +838,21 @@ document.addEventListener("click", function (e) {
 /* ===== ISOLATED JS + AUTO FONT FIT ===== */
 (function(){
   const lines = [
-    { text:"We create", gradient:"linear-gradient(90deg,#00eaff,#6effc8)" },
+    { text:"You imagine we create", gradient:"linear-gradient(90deg,#00eaff,#6effc8)" },
     { text:"Powerfull Tools", gradient:"linear-gradient(90deg,#ffd54a,#ff9f00)" },
 
-    { text:"Payment Gateway", gradient:"linear-gradient(90deg,#7c7cff,#00eaff)" },
-    { text:"Crypto Ecosystem", gradient:"linear-gradient(90deg,#00ffa2,#00eaff)" },
+    { text:"Custom UPI Payment Gateway", gradient:"linear-gradient(90deg,#7c7cff,#00eaff)" },
+    { text:"Customized Cryptocurrency Ecosystems", gradient:"linear-gradient(90deg,#00ffa2,#00eaff)" },
 
     { text:"Digital Forms", gradient:"linear-gradient(90deg,#ff6ec7,#ffc7a5)" },
     { text:"Web & Apps", gradient:"linear-gradient(90deg,#00ffa2,#00eaff)" },
 
-    { text:"AMCs", gradient:"linear-gradient(90deg,#ffd54a,#6effc8)" },
-    { text:"plugins", gradient:"linear-gradient(90deg,#ff6ec7,#ff9f00)" },
+    { text:"Annual Maintenance Contracts", gradient:"linear-gradient(90deg,#ffd54a,#6effc8)" },
+    { text:"Reliable Technical Support", gradient:"linear-gradient(90deg,#ff6ec7,#ff9f00)" },
 
     { text:"Powered by itoit", gradient:"linear-gradient(90deg,#ffd54a,#6effc8)" },
     { text:"Created by NPCH", gradient:"linear-gradient(90deg,#00eaff,#ffd54a)" },
-    { text:"Crafted in India", gradient:"linear-gradient(90deg,#ff6ec7,#ff9f00)" },
+    { text:"Crafted with ❤️ in India", gradient:"linear-gradient(90deg,#ff6ec7,#ff9f00)" },
     { text:"Get it now", gradient:"linear-gradient(90deg,#00eaff,#ffd54a)" }
   ];
 
